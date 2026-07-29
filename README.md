@@ -1,170 +1,97 @@
-# MarketPlace Seller Platform
+# Marketplace Seller Platform
 
-Estudo de caso full-stack para operação e inteligência de sellers em
-marketplaces. O projeto combina React, FastAPI, PostgreSQL, pipelines de dados,
-pricing assistido, ML explicável e privacidade por design.
+Plataforma full-stack de inteligencia para sellers em marketplaces. O projeto combina React, FastAPI, PostgreSQL, pipelines de dados, pricing assistido, ML explicavel e privacidade by design.
 
-O MarketPlace Seller Platform não é comercializado. O repositório mantém duas experiências
-deliberadamente separadas:
+O repositorio contem duas experiencias separadas:
 
-- `frontend/`: console pessoal conectado à API e às integrações reais.
-- `portfolio/`: demonstração pública para recrutadores, sem backend, usuários,
-  tokens ou dados reais.
+- `frontend/`: console privado conectado a API e integracoes reais.
+- `portfolio/`: demonstracao publica sem backend, usuarios, tokens ou dados reais.
 
-[![CI](https://github.com/vinmedrado/marketplace-seller-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/vinmedrado/marketplace-seller-platform/actions/workflows/ci.yml)
+[Abrir demonstracao publica](https://vinmedrado.github.io/marketplace-seller-platform/)
 
-**[Abrir demonstração pública](https://vinmedrado.github.io/marketplace-seller-platform/)**
+## Visao geral
 
-## O que a demonstração apresenta
+A proposta e reduzir friccao operacional em rotinas de marketplace: precificacao, analise de concorrencia, forecast, reconciliacao, ML e leitura executiva do negocio.
 
-A aplicação pública oferece nove áreas preenchidas por um cenário sintético e
-determinístico: visão executiva, catálogo, pricing e concorrência, War Room,
-forecast, reconciliação financeira, ML explicável, arquitetura e LGPD.
+## Problema que resolve
 
-As ações da demo são armazenadas apenas em `sessionStorage`. O botão
-“Reiniciar cenário” restaura a experiência original, e nenhum visitante altera
-o cenário visto por outra pessoa.
+- Operacao dispersa entre planilhas, APIs, relatórios e decisoes manuais.
+- Precificacao sem contexto de margem, demanda e concorrencia.
+- Falta de separacao entre demo publica e ambiente privado.
+- Dificuldade de explicar o raciocinio por tras das recomendacoes.
+
+## Arquitetura
 
 ```text
-portfolio/ ── JSON sintético versionado ── GitHub Pages
-
-frontend/ ── FastAPI ── service layer ── PostgreSQL
-                              ├── Mercado Livre OAuth
-                              ├── pricing/forecast
-                              └── datasets e modelos ML por tenant
+portfolio/        demo publica em GitHub Pages
+frontend/         console privado e integracoes
+ui/               contratos HTTP FastAPI
+services/         regras de negocio e inteligencia
+pricing/          calculo de preco e guardrails
+ml/               features, treino e inferencia
+data_engineering/  raw, staging, marts e feature store
+integrations/     OAuth e Mercado Livre
+tests/            testes automatizados
 ```
 
-## Executar a demo pública
+## Screenshots
 
-Requer Node.js 22.12 ou superior.
+![Social card](portfolio/public/social-card.svg)
+![LinkedIn card](portfolio/public/linkedin-card.png)
+
+## Funcionalidades
+
+- Visao executiva com cenarios sinteticos e deterministas.
+- Catálogo, pricing e concorrencia.
+- War room e forecast.
+- Reconciliacao financeira.
+- ML explicavel com leitura de risco.
+- Privacidade e LGPD por design.
+- Demo publica isolada do backend privado.
+
+## Tecnologias
+
+Python, FastAPI, React, PostgreSQL, SQLAlchemy, Alembic, Docker, Machine Learning, Python packaging, GitHub Pages.
+
+## Como executar
+
+### Demo publica
 
 ```bash
 cd portfolio
 npm ci
-npm test
-npm run check
 npm run build
 npm run dev
 ```
 
-O workflow `.github/workflows/pages.yml` testa, compila e publica
-automaticamente a pasta `portfolio/` no GitHub Pages a cada atualização da
-branch `main`. O `netlify.toml` foi preservado apenas como alternativa de
-implantação.
-
-## Executar o console pessoal
-
-Copie `.env.example` para `.env`, ajuste segredos e execute:
+### Console privado
 
 ```bash
+cp .env.example .env
 docker compose up --build
 ```
 
-- Console: `http://localhost:5173`
-- API: `http://localhost:8000`
-- OpenAPI, somente fora de produção: `http://localhost:8000/docs`
+## Estrutura do projeto
 
-O container executa `alembic upgrade head` antes de iniciar a API. A conta demo
-é habilitada por padrão somente em desenvolvimento/teste e deve permanecer
-desabilitada em produção.
-
-Para preparar o cenário sintético local sem Docker:
-
-```bash
-alembic upgrade head
-python scripts/seed_demo.py
+```text
+frontend/          console privado
+portfolio/         demo publica
+ui/                rotas FastAPI
+services/          casos de uso
+pricing/           pricing e margem
+ml/                pipeline de ML
+data_engineering/  dados e agregacoes
+integrations/      conectores externos
+tests/             testes
+docs/              documentacao
 ```
 
-O reset é bloqueado em produção e exige confirmação explícita:
+## Roadmap
 
-```bash
-python scripts/reset_demo.py --yes
-```
+- Consolidar mais evidencias visuais na demo publica.
+- Evoluir previsoes e analises explicaveis.
+- Manter separacao clara entre demo e console privado.
 
-## Qualidade
-
-Backend:
-
-```bash
-python -m compileall -q .
-pytest -q
-python -m pip_audit -r requirements.txt
-```
-
-Console:
-
-```bash
-cd frontend
-npm ci
-npm run check
-npm run lint
-npm test
-npm run build
-```
-
-Demo pública:
-
-```bash
-cd portfolio
-npm ci
-npm run check
-npm test
-npm run build
-npm audit
-```
-
-## Privacidade e LGPD
-
-A demo pública possui uma tela de acesso inteiramente local, com credenciais
-fictícias já preenchidas. Não há autenticação remota, analytics, formulários
-de coleta, API ou banco remoto.
-O console pessoal oferece aviso de transparência, exportação autenticada e
-protocolos de direitos do titular. Logs, tokens, nonces e convites possuem
-política explícita de retenção e descarte.
-
-```bash
-# apenas informa registros elegíveis
-python scripts/privacy_cleanup.py
-
-# aplica a política configurada
-python scripts/privacy_cleanup.py --apply
-```
-
-Produção exige um canal privado em `PRIVACY_CONTACT_EMAIL`. Consulte o
-[Aviso de Privacidade](PRIVACY.md) e a
-[Governança LGPD](docs/LGPD.md). Esses controles apoiam conformidade, mas não
-substituem decisões do controlador, contratos e avaliação jurídica.
-
-## Organização
-
-| Diretório | Responsabilidade |
-|---|---|
-| `ui/` | Contratos HTTP FastAPI |
-| `services/` | Casos de uso e inteligência operacional |
-| `models/` | ORM e schemas Pydantic |
-| `db/alembic/` | Evolução executável do schema |
-| `pricing/` | Regras, guardrails e cálculo de preço |
-| `ml/` | Features, treinamento, inferência e fallback |
-| `data_engineering/` | Raw, staging, marts e feature store |
-| `integrations/` | OAuth e API Mercado Livre |
-| `frontend/` | Console pessoal |
-| `portfolio/` | Experiência pública no GitHub Pages |
-| `tests/` | Testes unitários e integrados do backend |
-
-Mais detalhes em [Arquitetura](docs/ARCHITECTURE.md),
-[Segurança](docs/SECURITY.md), [Governança LGPD](docs/LGPD.md) e
-[Política de dados da demo](docs/DEMO_DATA.md). Logos, cores e o card social
-estão documentados em [Identidade visual](docs/BRAND.md).
-
-## Limites assumidos
-
-- Jobs do console pessoal executam em processo; não representam uma fila
-  distribuída.
-- Forecast é heurístico e sempre comunica confiança e limitações.
-- Billing e planos foram mantidos como exercício arquitetural histórico, não
-  como oferta comercial.
-- Amazon e Shopee não são anunciados como integrações implementadas.
-
-## Licença
+## Licenca
 
 MIT.
