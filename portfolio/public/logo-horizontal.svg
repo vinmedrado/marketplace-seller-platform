@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" role="img" aria-labelledby="title">
+  <title id="title">MarketPlace Seller Platform</title>
+  <rect x="4" y="4" width="112" height="112" rx="17" fill="#175c4b"/>
+  <path d="M24 82V35h16l20 22 20-22h16v47H82V56L60 78 38 56v26H24Z" fill="#ffffff"/>
+  <rect x="24" y="89" width="72" height="6" rx="3" fill="#d58b58"/>
+  <text x="140" y="52" fill="#1f2a30" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700">MarketPlace</text>
+  <text x="140" y="88" fill="#526168" font-family="Arial, Helvetica, sans-serif" font-size="28">Seller Platform</text>
+</svg>

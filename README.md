@@ -152,7 +152,8 @@ substituem decisões do controlador, contratos e avaliação jurídica.
 
 Mais detalhes em [Arquitetura](docs/ARCHITECTURE.md),
 [Segurança](docs/SECURITY.md), [Governança LGPD](docs/LGPD.md) e
-[Política de dados da demo](docs/DEMO_DATA.md).
+[Política de dados da demo](docs/DEMO_DATA.md). Logos, cores e o card social
+estão documentados em [Identidade visual](docs/BRAND.md).
 
 ## Limites assumidos
 

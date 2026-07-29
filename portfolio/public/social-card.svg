@@ -1,11 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#f3f4f0"/>
-  <rect width="26" height="630" fill="#175c4b"/>
-  <rect x="82" y="86" width="74" height="74" rx="5" fill="#175c4b"/>
-  <text x="99" y="133" fill="#ffffff" font-family="Arial" font-size="24" font-weight="700">MP</text>
-  <text x="82" y="225" fill="#175c4b" font-family="Arial" font-size="27" font-weight="700">PORTFÓLIO DE ENGENHARIA</text>
-  <text x="82" y="330" fill="#1f2a30" font-family="Georgia" font-size="70">MarketPlace Seller Platform</text>
-  <line x1="82" y1="376" x2="1118" y2="376" stroke="#d9ddd9" stroke-width="2"/>
-  <text x="82" y="440" fill="#68757b" font-family="Arial" font-size="34">React · FastAPI · PostgreSQL · Data · ML</text>
-  <text x="82" y="525" fill="#a96332" font-family="Arial" font-size="25">Demonstração interativa · dados 100% sintéticos</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 627" role="img" aria-labelledby="title description">
+  <title id="title">MarketPlace Seller Platform</title>
+  <desc id="description">Portfólio full-stack de inteligência operacional para marketplaces</desc>
+  <rect width="1200" height="627" fill="#f3f4f0"/>
+  <rect x="835" width="365" height="627" fill="#175c4b"/>
+
+  <rect x="72" y="58" width="72" height="72" rx="11" fill="#175c4b"/>
+  <path d="M86 106V76h10l12 14 12-14h10v30h-9V89l-13 15-13-15v17H86Z" fill="#ffffff"/>
+  <rect x="86" y="111" width="44" height="4" rx="2" fill="#d58b58"/>
+  <text x="164" y="89" fill="#1f2a30" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">MarketPlace</text>
+  <text x="164" y="117" fill="#526168" font-family="Arial, Helvetica, sans-serif" font-size="22">Seller Platform</text>
+
+  <text x="72" y="218" fill="#175c4b" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" letter-spacing="3">PORTFÓLIO FULL-STACK</text>
+  <text x="72" y="295" fill="#1f2a30" font-family="Georgia, serif" font-size="58">Inteligência operacional</text>
+  <text x="72" y="362" fill="#1f2a30" font-family="Georgia, serif" font-size="58">para marketplaces.</text>
+  <text x="72" y="420" fill="#68757b" font-family="Arial, Helvetica, sans-serif" font-size="23">Pricing · Forecast · Financeiro · ML explicável</text>
+  <line x1="72" y1="474" x2="760" y2="474" stroke="#d3d8d4" stroke-width="2"/>
+  <text x="72" y="523" fill="#526168" font-family="Arial, Helvetica, sans-serif" font-size="18">React  •  FastAPI  •  PostgreSQL  •  Privacy by Design</text>
+  <text x="72" y="570" fill="#a96332" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">DEMONSTRAÇÃO INTERATIVA · DADOS 100% SINTÉTICOS</text>
+
+  <path d="M898 367V196h55l64 77 64-77h55v171h-49v-93l-70 82-70-82v93h-49Z" fill="#ffffff"/>
+  <rect x="898" y="394" width="238" height="18" rx="9" fill="#d58b58"/>
+  <text x="1017" y="486" fill="#cfe0da" font-family="Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle">ENGINEERING</text>
+  <text x="1017" y="512" fill="#cfe0da" font-family="Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle">CASE STUDY</text>
 </svg>

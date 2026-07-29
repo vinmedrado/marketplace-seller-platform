@@ -88,8 +88,7 @@ function Shell({ children, reset, exit, path }: { children: React.ReactNode; res
     <div className="app-shell">
       <aside className={mobileOpen ? 'sidebar open' : 'sidebar'}>
         <div className="brand">
-          <span className="brand-mark">MP</span>
-          <span><strong>MarketPlace Seller Platform</strong><small>engineering portfolio</small></span>
+          <img className="brand-logo" src="/logo-horizontal.svg" alt="MarketPlace Seller Platform" />
         </div>
         <nav aria-label="Navegação principal">
           {nav.map(([routePath, label, icon]) => (
@@ -153,7 +152,7 @@ function AccessPage({ onEnter }: { onEnter: () => void }) {
   return (
     <div className="access-page">
       <header className="access-header">
-        <div className="access-brand"><span className="brand-mark">MP</span><strong>MarketPlace Seller Platform</strong></div>
+        <img className="access-logo" src="/logo-horizontal.svg" alt="MarketPlace Seller Platform" />
         <span>Projeto de portfólio · 2026</span>
       </header>
       <main className="access-main">

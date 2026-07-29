@@ -34,7 +34,7 @@ small { color: var(--muted); display: block; }
 .access-page { min-height: 100vh; display: flex; flex-direction: column; background: #f3f4f0; }
 .access-header { min-height: 78px; padding: 1rem clamp(1.25rem, 5vw, 4.5rem); border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: var(--paper); }
 .access-header > span { color: var(--muted); font-size: .78rem; }
-.access-brand { display: flex; align-items: center; gap: .75rem; font-size: .95rem; }
+.access-logo { display: block; width: 260px; max-width: 68vw; height: auto; }
 .access-main { width: min(1180px, calc(100% - 2.5rem)); min-width: 0; margin: auto; padding: clamp(3rem, 8vw, 7rem) 0; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(330px, .65fr); gap: clamp(3rem, 9vw, 8rem); align-items: center; }
 .access-intro, .access-card { min-width: 0; }
 .access-intro h1 { max-width: 780px; font-family: Georgia, "Times New Roman", serif; font-weight: 500; letter-spacing: -.035em; font-size: clamp(2.7rem, 5vw, 4.8rem); }
@@ -62,10 +62,7 @@ small { color: var(--muted); display: block; }
 .app-shell { display: grid; grid-template-columns: 252px minmax(0, 1fr); min-height: 100vh; }
 .sidebar { position: sticky; top: 0; height: 100vh; border-right: 1px solid var(--line); padding: 1.4rem 1rem; display: flex; flex-direction: column; background: #fafbf8; z-index: 20; }
 .brand { display: flex; align-items: center; gap: .7rem; padding: 0 .45rem 1.6rem; }
-.brand-mark { flex: 0 0 auto; width: 39px; height: 39px; display: grid; place-items: center; border: 1px solid var(--green); border-radius: 3px; background: var(--green); color: #fff; font-size: .73rem; font-weight: 700; letter-spacing: -.04em; }
-.brand strong, .brand small { display: block; }
-.brand strong { font-size: .78rem; line-height: 1.2; }
-.brand small { font-size: .61rem; margin-top: .15rem; }
+.brand-logo { display: block; width: 205px; max-width: 100%; height: auto; }
 nav { display: grid; gap: .15rem; }
 .nav-link { color: #59686e; padding: .7rem .7rem; border-left: 2px solid transparent; display: flex; align-items: center; gap: .75rem; font-size: .8rem; }
 .nav-link span { width: 18px; color: #829096; font-size: .95rem; text-align: center; }
@@ -256,7 +253,7 @@ dd { margin: .2rem 0 0; font-size: .69rem; }
 @media (max-width: 520px) {
   .access-main { width: min(calc(100% - 1.5rem), 1180px); }
   .access-header { padding-inline: .85rem; }
-  .access-brand strong { font-size: .76rem; }
+  .access-logo { width: 225px; }
   .access-points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .access-points span { min-width: 0; padding-right: .4rem; overflow-wrap: anywhere; }
   .access-card { width: 100%; }
