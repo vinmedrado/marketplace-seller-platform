@@ -3,6 +3,7 @@ __pycache__/
 .pytest_cache/
 .agents/
 .codex/
+.netlify/
 *.db
 *.sqlite
 *.sqlite3
@@ -19,3 +20,6 @@ ml/datasets/*.parquet
 ml/datasets/*.csv
 storage/ml_datasets/*
 !storage/ml_datasets/.gitkeep
+
+# Local Netlify folder
+.netlify

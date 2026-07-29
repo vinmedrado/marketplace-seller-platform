@@ -11,6 +11,10 @@ deliberadamente separadas:
 - `portfolio/`: demonstração pública para recrutadores, sem backend, usuários,
   tokens ou dados reais.
 
+[![CI](https://github.com/vinmedrado/selleros-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/vinmedrado/selleros-portfolio/actions/workflows/ci.yml)
+
+**[Abrir demonstração pública](https://selleros-market-intelligence.netlify.app/)**
+
 ## O que a demonstração apresenta
 
 A aplicação pública oferece nove áreas preenchidas por um cenário sintético e
