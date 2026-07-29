@@ -62,7 +62,7 @@ export default function Billing() {
         <div>
           <p className="text-sm text-sky-200 font-bold flex items-center gap-2"><CreditCard size={18}/> Billing Pagar.me</p>
           <h2 className="text-3xl font-black mt-1">Assinatura e monetização SaaS</h2>
-          <p className="text-slate-300 mt-2 max-w-3xl">Controle de plano, limites e status de cobrança. O SellerOS não salva dados de cartão; pagamentos devem usar token/card_id/checkout seguro do provider.</p>
+          <p className="text-slate-300 mt-2 max-w-3xl">Controle de plano, limites e status de cobrança. O MarketPlace Seller Platform não salva dados de cartão; pagamentos devem usar token/card_id/checkout seguro do provider.</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <Badge tone={providerConfigured?'green':'yellow'}>{providerConfigured ? 'Pagar.me configurado' : 'Pagar.me indisponível'}</Badge>

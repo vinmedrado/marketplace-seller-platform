@@ -1,4 +1,4 @@
-"""Dispatcher de alertas SellerOS.
+"""Dispatcher de alertas MarketPlace Seller Platform.
 
 Aplica preferências do tenant, severidade mínima, tipos habilitados, quiet hours,
 deduplicação e envio por provider sem bloquear o fluxo principal.

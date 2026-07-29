@@ -266,7 +266,7 @@ def analyze_portfolio(db: Session, tenant_id: str, persist: bool = False) -> dic
     health = int(max(0, min(100, (counts["STAR"]*100 + counts["CASH_COW"]*68 + counts["PROBLEM"]*55 + counts["DOG"]*25) / total)))
     if persist:
         db.commit()
-    return {"summary": {"total_products": len(rows), "stars": counts["STAR"], "cows": counts["CASH_COW"], "problems": counts["PROBLEM"], "dogs": counts["DOG"], "avg_margin": avg_margin, "avg_sales_velocity": avg_velocity, "portfolio_health_score": health}, "products": rows, "generated_at": datetime.utcnow().isoformat()+"Z", "disclaimer": "Classificação interna SellerOS baseada nos dados disponíveis. Quanto mais dados financeiros e históricos, maior a precisão."}
+    return {"summary": {"total_products": len(rows), "stars": counts["STAR"], "cows": counts["CASH_COW"], "problems": counts["PROBLEM"], "dogs": counts["DOG"], "avg_margin": avg_margin, "avg_sales_velocity": avg_velocity, "portfolio_health_score": health}, "products": rows, "generated_at": datetime.utcnow().isoformat()+"Z", "disclaimer": "Classificação interna MarketPlace Seller Platform baseada nos dados disponíveis. Quanto mais dados financeiros e históricos, maior a precisão."}
 
 
 def analyze_product(db: Session, tenant_id: str, product_id: str) -> dict[str, Any]:

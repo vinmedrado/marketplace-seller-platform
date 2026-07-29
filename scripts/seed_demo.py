@@ -55,7 +55,7 @@ def seed_product(db, tenant_id: str, index: int, spec: tuple) -> Product:
     product.titulo = title
     product.title = title
     product.titulo_otimizado = f"{title} Original com Nota Fiscal"
-    product.descricao = "Produto sintético para a demonstração local do SellerOS."
+    product.descricao = "Produto sintético para a demonstração local do MarketPlace Seller Platform."
     product.categoria_id = "MLB1051"
     product.category_id = product.categoria_id
     product.categoria_nome = category
@@ -80,7 +80,7 @@ def seed_product(db, tenant_id: str, index: int, spec: tuple) -> Product:
     product.last_synced_at = datetime.utcnow() - timedelta(minutes=index * 7)
 
     if not product.images:
-        db.add(ProductImage(product_id=product.id, url="https://placehold.co/800x800?text=SellerOS", principal=True))
+        db.add(ProductImage(product_id=product.id, url="https://placehold.co/800x800?text=MarketPlace+Seller+Platform", principal=True))
     return product
 
 

@@ -62,7 +62,7 @@ export default function AccountHealth() {
         <div>
           <span className="status-badge text-emerald-200">Mercado Livre · monitoramento operacional</span>
           <h2 className="text-4xl font-black mt-4">Saúde da Conta</h2>
-          <p className="text-slate-300 mt-3 text-lg max-w-4xl">Score interno SellerOS com reputação disponível pela API, catálogo sincronizado, riscos de estoque, anúncios pausados e alertas preventivos.</p>
+          <p className="text-slate-300 mt-3 text-lg max-w-4xl">Score interno MarketPlace Seller Platform com reputação disponível pela API, catálogo sincronizado, riscos de estoque, anúncios pausados e alertas preventivos.</p>
           <p className="text-xs text-slate-500 mt-2">Não é score oficial Mercado Livre. Métricas indisponíveis aparecem como “não disponível”.</p>
         </div>
         <button className="btn btn-primary" disabled={isFetching} onClick={() => refetch()}>{isFetching ? 'Atualizando...' : 'Atualizar saúde'}</button>
@@ -86,7 +86,7 @@ export default function AccountHealth() {
         <Card className={`${statusClasses(data.status)} border`}>
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="text-sm opacity-80">Score interno SellerOS</p>
+              <p className="text-sm opacity-80">Score interno MarketPlace Seller Platform</p>
               <div className="flex items-end gap-3 mt-4"><b className="text-7xl leading-none">{data.score}</b><span className="text-xl mb-2">/100</span></div>
               <span className="inline-flex mt-5 rounded-full px-4 py-2 text-sm font-bold bg-black/20 border border-white/10">{data.status}</span>
             </div>

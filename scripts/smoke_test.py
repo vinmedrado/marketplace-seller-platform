@@ -1,4 +1,4 @@
-"""Smoke test seguro do console SellerOS.
+"""Smoke test seguro do console MarketPlace Seller Platform.
 
 Por padrão executa apenas leituras. Use ``--mutating`` para validar um fluxo
 temporário de produto; o produto criado é removido ao final.

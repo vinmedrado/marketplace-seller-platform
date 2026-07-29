@@ -228,7 +228,7 @@ class QuestionsCache(Base):
 class AccountHealthSnapshot(Base):
     """Histórico de saúde operacional da conta Mercado Livre por tenant.
 
-    O score é interno SellerOS e não representa score oficial do Mercado Livre.
+    O score é interno MarketPlace Seller Platform e não representa score oficial do Mercado Livre.
     Métricas indisponíveis pela API permanecem nulas para evitar inferências falsas.
     """
     __tablename__ = "account_health_snapshots"
@@ -251,7 +251,7 @@ class AccountHealthSnapshot(Base):
 
 
 class BuyBoxScoreSnapshot(Base):
-    """Histórico do score interno SellerOS de probabilidade de Buy Box.
+    """Histórico do score interno MarketPlace Seller Platform de probabilidade de Buy Box.
 
     Não representa métrica oficial Mercado Livre. Guarda fatores e simulações
     para auditoria operacional e evolução futura do modelo.
@@ -363,7 +363,7 @@ class BillingEvent(Base):
 class DemandForecastSnapshot(Base):
     """Histórico de previsão de demanda e ponto de recompra por produto.
 
-    Heurística estatística interna SellerOS. Não inventa vendas e não representa
+    Heurística estatística interna MarketPlace Seller Platform. Não inventa vendas e não representa
     modelo preditivo oficial do Mercado Livre.
     """
     __tablename__ = "demand_forecast_snapshots"

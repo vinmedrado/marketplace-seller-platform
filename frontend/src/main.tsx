@@ -6,7 +6,7 @@ import './styles/globals.css';
 import { ToastProvider } from './components/ui/Toast';
 import AppLayout from './components/layout/AppLayout';
 import { Skeleton } from './components/ui/Card';
-import { registerSellerOSPWA } from './pwa';
+import { registerMarketplaceSellerPlatformPWA } from './pwa';
 
 const Landing = lazy(() => import('./pages/Landing'));
 const Login = lazy(() => import('./pages/Login'));
@@ -52,7 +52,7 @@ const qc = new QueryClient();
 const Guard = ({ children }: { children: React.ReactNode }) => sessionStorage.getItem('access_token') ? <>{children}</> : <Navigate to="/login" />;
 const Loading = () => <div className="p-4"><Skeleton className="h-32" /><Skeleton className="h-80 mt-4" /></div>;
 
-registerSellerOSPWA();
+registerMarketplaceSellerPlatformPWA();
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

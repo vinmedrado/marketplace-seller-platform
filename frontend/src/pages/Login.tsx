@@ -29,8 +29,8 @@ export default function Login() {
       <div className="absolute bg-orb bg-sky-400/30 w-40 h-40 -right-10 -top-10" />
       <div className="relative">
         <div className="h-14 w-14 rounded-2xl bg-gradient-to-tr from-sky-400 to-violet-500 grid place-items-center shadow-[0_0_38px_rgba(99,102,241,.4)]"><Sparkles/></div>
-        <h1 className="text-4xl font-black mt-6">Entrar no SellerOS</h1>
-        <p className="text-slate-300 mt-2">Acesse sua operação SellerOS com inteligência operacional, integrações e visão executiva em tempo real.</p>
+        <h1 className="text-4xl font-black mt-6">Entrar no MarketPlace Seller Platform</h1>
+        <p className="text-slate-300 mt-2">Acesse sua operação MarketPlace Seller Platform com inteligência operacional, integrações e visão executiva em tempo real.</p>
         <div className="space-y-3 mt-6">
           <label className="block"><span className="text-sm text-slate-400">E-mail</span><div className="relative mt-1"><Mail className="absolute left-4 top-3.5 text-slate-400" size={18}/><input className="input pl-12" value={email} onChange={e => setEmail(e.target.value)} /></div></label>
           <label className="block"><span className="text-sm text-slate-400">Senha</span><div className="relative mt-1"><Lock className="absolute left-4 top-3.5 text-slate-400" size={18}/><input className="input pl-12" type="password" value={senha} onChange={e => setSenha(e.target.value)} /></div></label>

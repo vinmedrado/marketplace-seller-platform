@@ -1,4 +1,4 @@
-"""WhatsApp/Evolution API provider opcional para alertas SellerOS.
+"""WhatsApp/Evolution API provider opcional para alertas MarketPlace Seller Platform.
 
 A integração fica preparada/configurável. Sem envs, retorna provider_unavailable
 sem interromper o fluxo principal.

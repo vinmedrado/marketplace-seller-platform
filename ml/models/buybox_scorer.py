@@ -1,4 +1,4 @@
-"""PATCH 8/10 — Buy Box Probability Score interno SellerOS.
+"""PATCH 8/10 — Buy Box Probability Score interno MarketPlace Seller Platform.
 
 Heurística transparente: não usa ML treinado, não promete Buy Box e não representa
 métrica oficial Mercado Livre. O objetivo é transformar sinais operacionais em
@@ -189,5 +189,5 @@ def score_buybox(product: dict[str, Any], account_health: dict[str, Any] | None 
         "recommendation": rec,
         "simulated_prices": scenarios,
         "best_scenario": best,
-        "disclaimer": "Score interno SellerOS baseado em sinais operacionais e mercado. Não é métrica oficial do Mercado Livre.",
+        "disclaimer": "Score interno MarketPlace Seller Platform baseado em sinais operacionais e mercado. Não é métrica oficial do Mercado Livre.",
     }

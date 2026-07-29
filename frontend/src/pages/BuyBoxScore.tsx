@@ -16,7 +16,7 @@ export default function BuyBoxScore(){
   return <Page>
     <div className="mb-5">
       <h2 className="text-3xl font-black">Buy Box Probability Score</h2>
-      <p className="text-slate-400 mt-2">Score interno SellerOS baseado em sinais operacionais e mercado. Não é uma métrica oficial do Mercado Livre.</p>
+      <p className="text-slate-400 mt-2">Score interno MarketPlace Seller Platform baseado em sinais operacionais e mercado. Não é uma métrica oficial do Mercado Livre.</p>
     </div>
 
     <div className="grid md:grid-cols-4 gap-4 mb-5">

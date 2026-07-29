@@ -1075,7 +1075,7 @@ def account_health(user = Depends(current_user), db: Session = Depends(get_db)):
 
 
 # ─────────────────────────────────────────────
-# BUY BOX PROBABILITY SCORE — Score interno SellerOS
+# BUY BOX PROBABILITY SCORE — Score interno MarketPlace Seller Platform
 # ─────────────────────────────────────────────
 @app.get("/products/{product_id}/buybox-score", tags=["buybox-score"])
 def product_buybox_score(product_id: str, refresh_market: bool = Query(True), user = Depends(current_user), db: Session = Depends(get_db)):

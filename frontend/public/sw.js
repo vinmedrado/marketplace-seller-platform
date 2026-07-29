@@ -1,7 +1,7 @@
-/* SellerOS PATCH 15.1 FINAL — PWA real seguro */
+/* MarketPlace Seller Platform PATCH 15.1 FINAL — PWA real seguro */
 const VERSION = '15.1.0';
-const STATIC_CACHE = `selleros-static-${VERSION}`;
-const RUNTIME_CACHE = `selleros-runtime-${VERSION}`;
+const STATIC_CACHE = `marketplace-seller-platform-static-${VERSION}`;
+const RUNTIME_CACHE = `marketplace-seller-platform-runtime-${VERSION}`;
 const OFFLINE_URL = '/offline.html';
 const APP_SHELL = ['/', '/index.html', OFFLINE_URL, '/manifest.json'];
 const SENSITIVE_PATTERNS = [

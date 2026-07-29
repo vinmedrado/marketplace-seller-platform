@@ -39,7 +39,7 @@ export default function Privacy() {
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement('a');
       anchor.href = url;
-      anchor.download = 'selleros-meus-dados.json';
+      anchor.download = 'marketplace-seller-platform-meus-dados.json';
       anchor.click();
       URL.revokeObjectURL(url);
       toast('Exportação gerada no seu dispositivo.', 'success');

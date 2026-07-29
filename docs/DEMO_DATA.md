@@ -11,8 +11,11 @@ Todos os dados de `portfolio/` são sintéticos:
 `portfolio/tests/demo-data.test.mjs` garante que todas as áreas tenham conteúdo
 e que pricing, forecast e predições referenciem produtos existentes.
 
-As mutações da War Room são gravadas em `sessionStorage`; fechar a aba encerra
-o estado. “Reiniciar cenário” limpa esse armazenamento imediatamente.
+O acesso demonstrativo e as mutações da War Room são gravados em
+`sessionStorage`; fechar a aba encerra o estado. “Reiniciar cenário” limpa as
+ações imediatamente.
 
-A demo não carrega analytics, formulários, login ou API. Interações não são
-compartilhadas entre visitantes.
+A tela inicial simula um login usando somente credenciais fictícias
+preenchidas e não envia qualquer valor. A demo não carrega analytics,
+formulários de coleta ou API. Interações não são compartilhadas entre
+visitantes.

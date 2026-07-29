@@ -106,7 +106,7 @@ def invite_user(db: Session, user: User, payload: dict[str, Any]) -> dict[str, A
     inv.expires_at = datetime.utcnow() + timedelta(days=7)
     db.commit(); db.refresh(inv)
     org = db.query(Organization).filter_by(id=user.organization_id, cliente_id=user.cliente_id).first()
-    org_name = getattr(org, "nome", None) or "SellerOS"
+    org_name = getattr(org, "nome", None) or "MarketPlace Seller Platform"
     invite_url = f"{FRONTEND_URL.rstrip('/')}/aceitar-convite/{inv.token}"
     email_sent = send_invite_email(to_email=email, invite_url=invite_url, org_name=org_name)
     result = {"id": inv.id, "email": inv.email, "role": inv.role, "status": inv.status, "email_sent": email_sent}
@@ -123,7 +123,7 @@ def get_invite(db: Session, token: str) -> dict[str, Any]:
     return {
         "email": inv.email,
         "role": inv.role,
-        "organization": getattr(org, "nome", None) or "SellerOS",
+        "organization": getattr(org, "nome", None) or "MarketPlace Seller Platform",
         "expires_at": inv.expires_at.isoformat() if inv.expires_at else None,
     }
 

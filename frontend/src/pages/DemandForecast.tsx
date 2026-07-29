@@ -121,7 +121,7 @@ export default function DemandForecast() {
       <Panel title="Oportunidades de demanda" rows={data.opportunities || []} empty="Sem tendência crescente suficiente ainda." />
     </section>
 
-    <p className="text-xs text-slate-500">{data.disclaimer || 'Previsão heurística interna SellerOS; use como apoio operacional, não como garantia.'}</p>
+    <p className="text-xs text-slate-500">{data.disclaimer || 'Previsão heurística interna MarketPlace Seller Platform; use como apoio operacional, não como garantia.'}</p>
   </div>;
 }
 

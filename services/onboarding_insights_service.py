@@ -1,6 +1,6 @@
 """PATCH 15/15 — Onboarding guiado e insights iniciais.
 
-Serviço consultivo que usa módulos reais já existentes do SellerOS. Mantém dados
+Serviço consultivo que usa módulos reais já existentes do MarketPlace Seller Platform. Mantém dados
 por tenant, não inventa métrica, não expõe tokens e não dispara alterações no ML.
 """
 from __future__ import annotations
@@ -115,7 +115,7 @@ def get_onboarding_insights(db: Session, tenant_id: str) -> dict[str, Any]:
             {'key': 'catalog', 'title': 'Catálogo sincronizado', 'done': synced},
             {'key': 'insights', 'title': 'Primeiros insights gerados', 'done': bool(buybox_row or opportunity_row or products)},
             {'key': 'alerts', 'title': 'Alertas configurados', 'done': bool(alert_settings and (alert_settings.telegram_enabled or alert_settings.whatsapp_enabled))},
-            {'key': 'ready', 'title': 'SellerOS pronto', 'done': connected and synced},
+            {'key': 'ready', 'title': 'MarketPlace Seller Platform pronto', 'done': connected and synced},
         ],
         'highlights': {
             'highest_buybox_risk': _product_card(buybox_product, {'buybox_probability': _f(getattr(buybox_row, 'current_probability', None)), 'reason': 'Menor probabilidade interna de Buy Box disponível.'}) if buybox_row else None,
@@ -133,5 +133,5 @@ def get_onboarding_insights(db: Session, tenant_id: str) -> dict[str, Any]:
         },
         'warnings': warnings,
         'generated_at': datetime.utcnow().isoformat() + 'Z',
-        'disclaimer': 'Insights iniciais usam apenas dados disponíveis no SellerOS. Nenhuma alteração é enviada ao Mercado Livre automaticamente.',
+        'disclaimer': 'Insights iniciais usam apenas dados disponíveis no MarketPlace Seller Platform. Nenhuma alteração é enviada ao Mercado Livre automaticamente.',
     }

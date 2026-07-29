@@ -30,8 +30,8 @@ def create_access_token(payload: dict) -> str:
     now = datetime.utcnow()
     body = {
         **payload,
-        "iss": "selleros-api",
-        "aud": "selleros-console",
+        "iss": "marketplace-seller-platform-api",
+        "aud": "marketplace-seller-platform-console",
         "iat": int(now.timestamp()),
         "jti": secrets.token_urlsafe(18),
         "exp": int((now + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)).timestamp()),
@@ -47,7 +47,7 @@ def decode_access_token(token: str) -> dict:
         expected = _b64(hmac.new(API_SECRET_KEY.encode(), signing_input.encode(), hashlib.sha256).digest())
         if not hmac.compare_digest(sig, expected): raise ValueError("assinatura inválida")
         payload = json.loads(_unb64(body))
-        if payload.get("iss") != "selleros-api" or payload.get("aud") != "selleros-console":
+        if payload.get("iss") != "marketplace-seller-platform-api" or payload.get("aud") != "marketplace-seller-platform-console":
             raise ValueError("claims inválidas")
         if payload.get("exp", 0) < int(datetime.utcnow().timestamp()): raise ValueError("token expirado")
         return payload

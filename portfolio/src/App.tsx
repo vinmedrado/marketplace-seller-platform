@@ -25,7 +25,7 @@ const riskLabel: Record<Risk, string> = {
 };
 
 const nav = [
-  ['/', 'Visão executiva', '⌁'],
+  ['/visao-executiva', 'Visão executiva', '⌁'],
   ['/catalogo', 'Catálogo', '▦'],
   ['/pricing', 'Pricing & mercado', '↗'],
   ['/war-room', 'War Room', '◎'],
@@ -61,7 +61,7 @@ function AppLink({ to, children, className, onClick: afterNavigate }: { to: stri
 function useDemoActions() {
   const [actions, setActions] = useState<Action[]>(() => {
     try {
-      const stored = sessionStorage.getItem('selleros-portfolio-actions');
+      const stored = sessionStorage.getItem('marketplace-seller-platform-portfolio-actions');
       return stored ? JSON.parse(stored) : data.actions;
     } catch {
       return data.actions as Action[];
@@ -71,25 +71,25 @@ function useDemoActions() {
   const update = (id: string, status: ActionStatus) => {
     setActions((current) => {
       const next = current.map((action) => action.id === id ? { ...action, status } : action);
-      sessionStorage.setItem('selleros-portfolio-actions', JSON.stringify(next));
+      sessionStorage.setItem('marketplace-seller-platform-portfolio-actions', JSON.stringify(next));
       return next;
     });
   };
   const reset = () => {
-    sessionStorage.removeItem('selleros-portfolio-actions');
+    sessionStorage.removeItem('marketplace-seller-platform-portfolio-actions');
     setActions(data.actions as Action[]);
   };
   return { actions, update, reset };
 }
 
-function Shell({ children, reset, path }: { children: React.ReactNode; reset: () => void; path: string }) {
+function Shell({ children, reset, exit, path }: { children: React.ReactNode; reset: () => void; exit: () => void; path: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <div className="app-shell">
       <aside className={mobileOpen ? 'sidebar open' : 'sidebar'}>
         <div className="brand">
-          <span className="brand-mark">S</span>
-          <span><strong>SellerOS</strong><small>engineering portfolio</small></span>
+          <span className="brand-mark">MP</span>
+          <span><strong>MarketPlace Seller Platform</strong><small>engineering portfolio</small></span>
         </div>
         <nav aria-label="Navegação principal">
           {nav.map(([routePath, label, icon]) => (
@@ -115,11 +115,14 @@ function Shell({ children, reset, path }: { children: React.ReactNode; reset: ()
             <span>DEMO</span>
             <p><strong>{data.metadata.scenario}</strong><small>Dados 100% sintéticos e determinísticos</small></p>
           </div>
-          <button className="button ghost" onClick={reset}>↻ Reiniciar cenário</button>
+          <div className="topbar-actions">
+            <button className="button ghost" onClick={reset}>↻ Reiniciar cenário</button>
+            <button className="button text" onClick={exit}>Sair da demo</button>
+          </div>
         </header>
         <main>{children}</main>
         <footer>
-          SellerOS é um estudo de caso de engenharia. Nenhuma venda, empresa ou integração exibida é real.{' '}
+          MarketPlace Seller Platform é um estudo de caso de engenharia. Nenhuma venda, empresa ou integração exibida é real.{' '}
           <AppLink to="/privacidade">Privacidade e LGPD</AppLink>
         </footer>
       </div>
@@ -140,6 +143,53 @@ function PageHeader({ eyebrow, title, text, children }: { eyebrow: string; title
 function Badge({ value }: { value: string }) {
   const normalized = value.toLowerCase() as Risk;
   return <span className={`badge ${normalized}`}>{riskLabel[normalized] ?? value}</span>;
+}
+
+function AccessPage({ onEnter }: { onEnter: () => void }) {
+  const submit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onEnter();
+  };
+  return (
+    <div className="access-page">
+      <header className="access-header">
+        <div className="access-brand"><span className="brand-mark">MP</span><strong>MarketPlace Seller Platform</strong></div>
+        <span>Projeto de portfólio · 2026</span>
+      </header>
+      <main className="access-main">
+        <section className="access-intro">
+          <span className="eyebrow">MARKETPLACE OPERATIONS</span>
+          <h1>Decisões operacionais reunidas em um único produto.</h1>
+          <p>Um estudo de caso full-stack sobre catálogo, pricing, concorrência, previsão de demanda, reconciliação financeira e machine learning explicável.</p>
+          <div className="access-points">
+            <span><strong>9</strong> áreas demonstrativas</span>
+            <span><strong>100%</strong> dados sintéticos</span>
+            <span><strong>103</strong> testes de backend</span>
+          </div>
+          <div className="access-disclaimer">
+            <strong>Ambiente seguro para avaliação</strong>
+            <p>Sem API remota, integrações reais, cookies de rastreamento ou dados de clientes.</p>
+          </div>
+        </section>
+        <section className="access-card" aria-labelledby="access-title">
+          <span className="access-tag">ACESSO DEMONSTRATIVO</span>
+          <h2 id="access-title">Explorar a plataforma</h2>
+          <p>As credenciais abaixo são fictícias e servem apenas para apresentar o fluxo inicial do produto.</p>
+          <form onSubmit={submit}>
+            <label>E-mail<input value="recrutador@demo.local" readOnly /></label>
+            <label>Senha<input value="portfolio2026" type="password" readOnly /></label>
+            <button className="button access-button" type="submit">Entrar na demonstração</button>
+          </form>
+          <small>Nenhuma credencial é validada, enviada ou armazenada.</small>
+          <div className="access-links">
+            <AppLink to="/arquitetura">Ver arquitetura</AppLink>
+            <AppLink to="/privacidade">Privacidade e LGPD</AppLink>
+          </div>
+        </section>
+      </main>
+      <footer className="access-footer">MarketPlace Seller Platform · Projeto não comercial</footer>
+    </div>
+  );
 }
 
 function Overview({ actions }: { actions: Action[] }) {
@@ -331,7 +381,7 @@ function Privacy() {
   return (
     <>
       <PageHeader eyebrow="PRIVACY BY DESIGN" title="LGPD como requisito de arquitetura" text="A demonstração pública elimina coleta; o console pessoal oferece transparência, retenção e exercício de direitos." />
-      <div className="truth-banner"><strong>Esta demo não coleta dados pessoais</strong><span>Não há login, cookies, analytics, formulários, API ou banco remoto. Apenas o estado das ações fictícias é guardado no `sessionStorage` do próprio navegador.</span></div>
+      <div className="truth-banner"><strong>Esta demo não coleta dados pessoais</strong><span>A tela de acesso é apenas uma simulação local. Não há autenticação remota, cookies, analytics, API ou banco. Somente o acesso e as ações fictícias ficam no `sessionStorage` desta aba.</span></div>
       <section className="privacy-grid">
         <article className="card"><span className="eyebrow">MINIMIZAÇÃO</span><h2>Menos dados por padrão</h2><p>O frontend público usa somente JSON sintético versionado. Nomes de sellers, pedidos, produtos e métricas não correspondem a pessoas ou empresas reais.</p></article>
         <article className="card"><span className="eyebrow">DIREITOS DO TITULAR</span><h2>Fluxo rastreável</h2><p>O console autenticado permite exportar os próprios dados e protocolar acesso, correção, eliminação, anonimização, portabilidade, revogação ou revisão humana.</p></article>
@@ -350,8 +400,9 @@ function Privacy() {
 export default function App() {
   const demo = useDemoActions();
   const { path } = usePortfolioRouter();
+  const [accessGranted, setAccessGranted] = useState(() => sessionStorage.getItem('marketplace-seller-platform-portfolio-access') === 'granted');
   const pages: Record<string, React.ReactNode> = {
-    '/': <Overview actions={demo.actions} />,
+    '/visao-executiva': <Overview actions={demo.actions} />,
     '/catalogo': <Catalog />,
     '/pricing': <Pricing />,
     '/war-room': <WarRoom actions={demo.actions} update={demo.update} />,
@@ -361,9 +412,23 @@ export default function App() {
     '/arquitetura': <Architecture />,
     '/privacidade': <Privacy />,
   };
+  const enter = () => {
+    sessionStorage.setItem('marketplace-seller-platform-portfolio-access', 'granted');
+    setAccessGranted(true);
+    window.history.pushState({}, '', '/visao-executiva');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
+  const exit = () => {
+    sessionStorage.removeItem('marketplace-seller-platform-portfolio-access');
+    setAccessGranted(false);
+    window.history.pushState({}, '', '/');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
+  const publicInformation = path === '/arquitetura' || path === '/privacidade';
+  if (path === '/' || (!accessGranted && !publicInformation)) return <AccessPage onEnter={enter} />;
   return (
-    <Shell reset={demo.reset} path={path}>
-      {pages[path] ?? pages['/']}
+    <Shell reset={demo.reset} exit={exit} path={path}>
+      {pages[path] ?? pages['/visao-executiva']}
     </Shell>
   );
 }

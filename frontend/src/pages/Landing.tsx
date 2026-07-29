@@ -13,7 +13,7 @@ export default function Landing() {
   return <div className="min-h-screen grid-bg aurora overflow-hidden">
     <section className="max-w-7xl mx-auto px-6 py-8 relative">
       <nav className="flex justify-between items-center glass premium-border rounded-3xl px-5 py-4">
-        <b className="text-2xl tracking-tight">SellerOS</b>
+        <b className="text-2xl tracking-tight">MarketPlace Seller Platform</b>
         <div className="hidden md:flex gap-6 text-sm text-slate-300"><a href="#solucao">Solução</a><a href="#features">Funcionalidades</a><a href="#fluxo">Como funciona</a></div>
         <Link to="/login" className="btn btn-primary">Entrar no ambiente demo</Link>
       </nav>

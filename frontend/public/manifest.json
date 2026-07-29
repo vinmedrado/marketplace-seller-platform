@@ -1,10 +1,10 @@
 {
-  "name": "SellerOS Marketplace Platform",
-  "short_name": "SellerOS",
+  "name": "MarketPlace Seller Platform — Console pessoal",
+  "short_name": "MP Seller",
   "description": "Console operacional pessoal para sellers de marketplace.",
   "start_url": "/app/dashboard?source=pwa",
   "scope": "/",
-  "id": "/selleros-pwa",
+  "id": "/marketplace-seller-platform-pwa",
   "display": "standalone",
   "display_override": [
     "window-controls-overlay",

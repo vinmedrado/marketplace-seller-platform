@@ -1,4 +1,4 @@
-"""Serviço de alertas operacionais SellerOS.
+"""Serviço de alertas operacionais MarketPlace Seller Platform.
 
 PATCH 9/10 — configurações, histórico, dedupe e disparos para Telegram e
 WhatsApp/Evolution API sem acoplar hard-fail aos módulos de marketplace.
@@ -102,7 +102,7 @@ def list_alert_history(db: Session, tenant_id: str, *, page: int = 1, page_size:
 def format_alert_message(*, alert_type: str, severity: str, title: str, message: str) -> str:
     icon = "🚨" if severity == "critical" else "⚠️" if severity == "warning" else "ℹ️"
     label = "Crítico" if severity == "critical" else "Atenção" if severity == "warning" else "Informativo"
-    return f"{icon} <b>SellerOS — Alerta {label}</b>\nTipo: {alert_type}\nTítulo: {title}\n\n{message}"[:3900]
+    return f"{icon} <b>MarketPlace Seller Platform — Alerta {label}</b>\nTipo: {alert_type}\nTítulo: {title}\n\n{message}"[:3900]
 
 
 def create_alert(db: Session, tenant_id: str, *, alert_type: str, severity: str = "warning", title: str, message: str, dedupe_key: str | None = None, force: bool = False) -> dict[str, Any]:
@@ -128,7 +128,7 @@ def send_test_alert(db: Session, tenant_id: str) -> dict[str, Any]:
         tenant_id,
         alert_type="SYNC_ERROR",
         severity="info",
-        title="Alerta teste SellerOS",
+        title="Alerta teste MarketPlace Seller Platform",
         message="Este é um alerta teste. Se você recebeu, o canal está configurado corretamente.",
         dedupe_key=f"test:{tenant_id}:{int(datetime.utcnow().timestamp())}",
         force=True,

@@ -1,4 +1,4 @@
-"""Telegram provider para alertas operacionais SellerOS.
+"""Telegram provider para alertas operacionais MarketPlace Seller Platform.
 
 PATCH 9/10 — provider opcional. Falhas de Telegram nunca devem quebrar o
 fluxo principal de negócio.

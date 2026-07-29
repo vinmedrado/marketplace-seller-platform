@@ -1,6 +1,6 @@
 """PATCH 7/10 — Saúde da Conta ML em Tempo Real.
 
-Score interno SellerOS baseado em dados reais disponíveis na conexão Mercado Livre
+Score interno MarketPlace Seller Platform baseado em dados reais disponíveis na conexão Mercado Livre
 + catálogo sincronizado. Não representa score oficial Mercado Livre.
 """
 from __future__ import annotations
@@ -172,9 +172,9 @@ def _build_alerts(*, score: int, status: str, level_id: str | None, cancellation
         })
 
     if score < 40:
-        add("ACCOUNT_CRITICAL", "critical", "Saúde da conta crítica", "O score interno SellerOS ficou abaixo de 40.", "Priorize reclamações, cancelamentos e atrasos antes de expandir catálogo.", score, 40)
+        add("ACCOUNT_CRITICAL", "critical", "Saúde da conta crítica", "O score interno MarketPlace Seller Platform ficou abaixo de 40.", "Priorize reclamações, cancelamentos e atrasos antes de expandir catálogo.", score, 40)
     elif score < 60:
-        add("ACCOUNT_RISK", "warning", "Conta em faixa de risco", "O score interno SellerOS indica risco operacional.", "Revise os principais alertas e atue nos anúncios com pior saúde.", score, 60)
+        add("ACCOUNT_RISK", "warning", "Conta em faixa de risco", "O score interno MarketPlace Seller Platform indica risco operacional.", "Revise os principais alertas e atue nos anúncios com pior saúde.", score, 60)
 
     if level_id and "red" in str(level_id).lower():
         add("REPUTATION_LOW", "critical", "Reputação Mercado Livre baixa", f"A reputação retornada pela API está em {level_id}.", "Investigue rapidamente reclamações, cancelamentos e atrasos recentes.", level_id, "yellow_or_green")
@@ -299,7 +299,7 @@ def get_account_health(db: Session, tenant_id: str) -> dict[str, Any]:
     )
     db.add(snapshot)
 
-    _record_event(db, tenant_id, "account_health_generated", "Saúde da conta gerada", f"Score interno SellerOS: {score} ({status}).", throttle_seconds=180)
+    _record_event(db, tenant_id, "account_health_generated", "Saúde da conta gerada", f"Score interno MarketPlace Seller Platform: {score} ({status}).", throttle_seconds=180)
     if any(a["severity"] == "critical" for a in alerts):
         _record_event(db, tenant_id, "account_health_critical", "Risco crítico na saúde da conta", "Alertas críticos foram detectados no monitoramento da conta.", severity="critical", throttle_seconds=3600)
     elif alerts:
@@ -318,7 +318,7 @@ def get_account_health(db: Session, tenant_id: str) -> dict[str, Any]:
                 alert_type="ACCOUNT_HEALTH_RISK",
                 severity="critical" if status == "CRÍTICA" else "warning",
                 title=f"Saúde da conta em {status}",
-                message=f"Score interno SellerOS: {score}/100. Revise reclamações, cancelamentos, expedição e qualidade dos anúncios.",
+                message=f"Score interno MarketPlace Seller Platform: {score}/100. Revise reclamações, cancelamentos, expedição e qualidade dos anúncios.",
                 dedupe_key=f"account:{tenant_id}:ACCOUNT_HEALTH_RISK",
             )
         except Exception:
@@ -330,7 +330,7 @@ def get_account_health(db: Session, tenant_id: str) -> dict[str, Any]:
     response = {
         "score": score,
         "status": status,
-        "score_label": "Score interno SellerOS",
+        "score_label": "Score interno MarketPlace Seller Platform",
         "official_score": False,
         "reputation_level": level_id,
         "metrics": {

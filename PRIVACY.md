@@ -1,10 +1,10 @@
-# Aviso de Privacidade — SellerOS
+# Aviso de Privacidade — MarketPlace Seller Platform
 
 Última atualização: 29 de julho de 2026.
 
 ## Escopo
 
-O SellerOS é um estudo de caso de engenharia para uso pessoal. Ele não é uma
+O MarketPlace Seller Platform é um estudo de caso de engenharia para uso pessoal. Ele não é uma
 oferta comercial. Existem duas experiências separadas:
 
 - a demonstração pública em `portfolio/`, publicada como site estático;
@@ -16,11 +16,12 @@ automática de conformidade jurídica.
 
 ## Demonstração pública
 
-A demonstração pública não possui login, formulário, analytics, cookies,
-backend ou banco remoto. Ela usa somente dados sintéticos versionados.
+A demonstração pública possui uma simulação de acesso com credenciais
+fictícias já preenchidas. Ela não autentica usuários, envia credenciais,
+executa analytics, cria cookies ou usa backend e banco remoto.
 
-As interações fictícias do War Room são guardadas em `sessionStorage` no
-dispositivo do visitante e desaparecem ao final da sessão. O Netlify pode
+O acesso demonstrativo e as interações fictícias do War Room são guardados em
+`sessionStorage` no dispositivo do visitante e desaparecem ao final da sessão. O Netlify pode
 manter registros técnicos de acesso conforme suas próprias configurações e
 políticas.
 
@@ -78,7 +79,7 @@ O console autenticado permite:
 - solicitar revisão humana de decisão automatizada.
 
 Eliminação não é absoluta e pode ser limitada por hipóteses legais de
-conservação. Modelos do SellerOS apenas recomendam; nenhuma predição altera
+conservação. Modelos do MarketPlace Seller Platform apenas recomendam; nenhuma predição altera
 preço ou publica anúncio sem confirmação humana.
 
 O contato privado deve ser configurado em `PRIVACY_CONTACT_EMAIL` antes de

@@ -344,7 +344,7 @@ def _persist_signals(db: Session, tenant_id: str, alerts: list[dict[str, Any]], 
                     alert_type=alert["type"],
                     severity=alert.get("severity", "warning"),
                     title=alert.get("title", "Alerta financeiro"),
-                    message=f"SellerOS — Reconciliação Financeira\nPeríodo: {period_label}\n{alert.get('description')}\nAção sugerida: {alert.get('recommended_action')}",
+                    message=f"MarketPlace Seller Platform — Reconciliação Financeira\nPeríodo: {period_label}\n{alert.get('description')}\nAção sugerida: {alert.get('recommended_action')}",
                     dedupe_key=f"finance:{tenant_id}:{period_label}:{alert['type']}",
                 )
         except Exception as exc:  # pragma: no cover

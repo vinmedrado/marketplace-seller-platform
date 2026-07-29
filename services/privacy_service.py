@@ -37,7 +37,7 @@ REQUEST_LABELS = {
 
 def privacy_summary() -> dict[str, Any]:
     return {
-        "controller": "Operador individual do SellerOS",
+        "controller": "Operador individual do MarketPlace Seller Platform",
         "contact": PRIVACY_CONTACT_EMAIL or "Configure PRIVACY_CONTACT_EMAIL",
         "scope": "Console pessoal; a demonstração pública não coleta dados pessoais.",
         "purposes": [

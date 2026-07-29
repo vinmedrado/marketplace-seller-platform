@@ -1,9 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
-  <defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#10273c"/></linearGradient></defs>
-  <rect width="1200" height="630" fill="url(#g)"/>
-  <circle cx="1010" cy="100" r="260" fill="#21d4a7" opacity=".08"/>
-  <text x="90" y="210" fill="#21d4a7" font-family="Arial" font-size="34" font-weight="700">PORTFÓLIO DE ENGENHARIA</text>
-  <text x="90" y="330" fill="#f4f8fb" font-family="Arial" font-size="96" font-weight="800">SellerOS</text>
-  <text x="90" y="410" fill="#a9bac8" font-family="Arial" font-size="38">React · FastAPI · PostgreSQL · Data · ML</text>
-  <text x="90" y="520" fill="#f6bd60" font-family="Arial" font-size="28">Demo interativa com dados 100% sintéticos</text>
+  <rect width="1200" height="630" fill="#f3f4f0"/>
+  <rect width="26" height="630" fill="#175c4b"/>
+  <rect x="82" y="86" width="74" height="74" rx="5" fill="#175c4b"/>
+  <text x="99" y="133" fill="#ffffff" font-family="Arial" font-size="24" font-weight="700">MP</text>
+  <text x="82" y="225" fill="#175c4b" font-family="Arial" font-size="27" font-weight="700">PORTFÓLIO DE ENGENHARIA</text>
+  <text x="82" y="330" fill="#1f2a30" font-family="Georgia" font-size="70">MarketPlace Seller Platform</text>
+  <line x1="82" y1="376" x2="1118" y2="376" stroke="#d9ddd9" stroke-width="2"/>
+  <text x="82" y="440" fill="#68757b" font-family="Arial" font-size="34">React · FastAPI · PostgreSQL · Data · ML</text>
+  <text x="82" y="525" fill="#a96332" font-family="Arial" font-size="25">Demonstração interativa · dados 100% sintéticos</text>
 </svg>

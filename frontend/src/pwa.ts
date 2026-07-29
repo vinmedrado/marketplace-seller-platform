@@ -1,4 +1,4 @@
-export function registerSellerOSPWA() {
+export function registerMarketplaceSellerPlatformPWA() {
   if (!('serviceWorker' in navigator) || !import.meta.env.PROD) return;
   window.addEventListener('load', async () => {
     try {
@@ -8,12 +8,12 @@ export function registerSellerOSPWA() {
         if (!worker) return;
         worker.addEventListener('statechange', () => {
           if (worker.state === 'installed' && navigator.serviceWorker.controller) {
-            window.dispatchEvent(new CustomEvent('selleros-pwa-update-ready'));
+            window.dispatchEvent(new CustomEvent('marketplace-seller-platform-pwa-update-ready'));
           }
         });
       });
     } catch (err) {
-      console.warn('[SellerOS PWA] Service worker não registrado', err);
+      console.warn('[MarketPlace Seller Platform PWA] Service worker não registrado', err);
     }
   });
 }

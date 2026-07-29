@@ -37,7 +37,7 @@ export default function AcceptInvite() {
   return <div className="min-h-screen grid-bg aurora grid place-items-center p-6">
     <Link to="/login" className="fixed left-6 top-6 btn btn-ghost">← Login</Link>
     <form onSubmit={submit} className="glass premium-border rounded-[2rem] w-full max-w-md p-7">
-      <span className="badge">CONVITE SELLEROS</span>
+      <span className="badge">CONVITE MARKETPLACE SELLER PLATFORM</span>
       <h1 className="text-3xl font-black mt-5">Entrar na organização</h1>
       {details && <>
         <p className="text-slate-300 mt-2">{details.organization} convidou <strong>{details.email}</strong> como {details.role}.</p>

@@ -11,9 +11,9 @@ deliberadamente separadas:
 - `portfolio/`: demonstração pública para recrutadores, sem backend, usuários,
   tokens ou dados reais.
 
-[![CI](https://github.com/vinmedrado/selleros-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/vinmedrado/selleros-portfolio/actions/workflows/ci.yml)
+[![CI](https://github.com/vinmedrado/marketplace-seller-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/vinmedrado/marketplace-seller-platform/actions/workflows/ci.yml)
 
-**[Abrir demonstração pública](https://selleros-market-intelligence.netlify.app/)**
+**[Abrir demonstração pública](https://marketplace-seller-platform.netlify.app/)**
 
 ## O que a demonstração apresenta
 
@@ -114,7 +114,9 @@ npm audit
 
 ## Privacidade e LGPD
 
-A demo pública não possui login, analytics, formulários, API ou banco remoto.
+A demo pública possui uma tela de acesso inteiramente local, com credenciais
+fictícias já preenchidas. Não há autenticação remota, analytics, formulários
+de coleta, API ou banco remoto.
 O console pessoal oferece aviso de transparência, exportação autenticada e
 protocolos de direitos do titular. Logs, tokens, nonces e convites possuem
 política explícita de retenção e descarte.

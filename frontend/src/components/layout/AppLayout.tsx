@@ -19,7 +19,7 @@ export default function AppLayout() {
   const current = items.find(([to]) => location.pathname.startsWith(to));
   const Nav = ({ compact = false }: { compact?: boolean }) => <>
     <button onClick={() => compact ? setMobileOpen(false) : setOpen(!open)} className="btn btn-ghost flex items-center justify-center gap-3 min-h-12">
-      {compact ? <XCircle /> : open ? <ChevronLeft /> : <Menu />}{(!compact && open) || compact ? <span className="text-lg">SellerOS</span> : null}
+      {compact ? <XCircle /> : open ? <ChevronLeft /> : <Menu />}{(!compact && open) || compact ? <span className="text-lg">MarketPlace Seller Platform</span> : null}
     </button>
     <div className="rounded-2xl bg-emerald-400/10 text-emerald-200 border border-emerald-300/20 px-3 py-3 text-xs font-bold flex items-center gap-2">
       <span className="h-2 w-2 rounded-full bg-emerald-300 animate-pulse" />{(open || compact) && 'Console pessoal operacional'}
@@ -36,7 +36,7 @@ export default function AppLayout() {
     <motion.aside animate={{ width: open ? 286 : 94 }} className="hidden lg:flex glass premium-border m-4 rounded-[2rem] p-4 flex-col gap-4 sticky top-4 h-[calc(100vh-2rem)]"><Nav /></motion.aside>
     <main className="flex-1 p-3 sm:p-4 min-w-0 pb-20 lg:pb-4">
       <div className="glass premium-border rounded-[1.5rem] lg:rounded-[2rem] p-4 mb-4 flex items-center justify-between gap-4">
-        <div className="min-w-0"><p className="text-xs sm:text-sm text-slate-400 truncate">Marketplace Seller Platform / {current?.[1] || 'App'}</p><h1 className="text-lg sm:text-xl font-black truncate">Cockpit operacional SellerOS</h1></div>
+        <div className="min-w-0"><p className="text-xs sm:text-sm text-slate-400 truncate">MarketPlace Seller Platform / {current?.[1] || 'App'}</p><h1 className="text-lg sm:text-xl font-black truncate">Cockpit operacional MarketPlace Seller Platform</h1></div>
         <div className="hidden xl:flex items-center gap-2 bg-white/10 rounded-2xl px-4 py-3 text-slate-300 border border-white/10 min-w-80"><Search size={18}/><span className="flex-1">Buscar produtos, jobs e oportunidades</span><span className="text-xs text-slate-400">Ctrl K</span><Command size={16}/></div>
         <div className="flex items-center gap-2 sm:gap-3"><PWAStatusBadge/><AlertBell/><span className="hidden md:inline-flex status-badge text-sky-200">API conectada</span><div className="h-10 w-10 sm:h-11 sm:w-11 rounded-2xl bg-gradient-to-tr from-sky-400 via-violet-500 to-fuchsia-500 shadow-[0_0_35px_rgba(139,92,246,.32)]" /></div>
       </div>

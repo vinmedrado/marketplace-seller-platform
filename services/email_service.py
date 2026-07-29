@@ -1,7 +1,7 @@
 """Serviço de e-mail transacional via Resend.
 
 Falha de configuração ou de envio nunca deve quebrar o fluxo principal do
-SellerOS. Todas as funções retornam True/False e sanitizam logs para não expor
+MarketPlace Seller Platform. Todas as funções retornam True/False e sanitizam logs para não expor
 chaves ou dados sensíveis.
 """
 from __future__ import annotations
@@ -27,8 +27,8 @@ def _configured() -> bool:
 
 
 def _from_header() -> str:
-    name = (RESEND_FROM_NAME or "SellerOS").strip()
-    email = (RESEND_FROM_EMAIL or "noreply@selleros.com.br").strip()
+    name = (RESEND_FROM_NAME or "MarketPlace Seller Platform").strip()
+    email = (RESEND_FROM_EMAIL or "noreply@example.invalid").strip()
     return f"{name} <{email}>" if name else email
 
 
@@ -48,13 +48,13 @@ def _base_html(title: str, body: str, cta_label: str | None = None, cta_url: str
     return f'''
     <div style="font-family:Inter,Arial,sans-serif;background:#f8fafc;padding:32px;color:#0f172a;">
       <div style="max-width:620px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:18px;padding:28px;">
-        <div style="font-size:14px;font-weight:800;letter-spacing:.08em;color:#2563eb;text-transform:uppercase;">SellerOS</div>
+        <div style="font-size:14px;font-weight:800;letter-spacing:.08em;color:#2563eb;text-transform:uppercase;">MarketPlace Seller Platform</div>
         <h1 style="font-size:24px;line-height:1.25;margin:14px 0 12px;">{safe_title}</h1>
         <div style="font-size:15px;line-height:1.65;color:#334155;">{body}</div>
         {button}
         <hr style="border:none;border-top:1px solid #e2e8f0;margin:28px 0;" />
         <p style="font-size:12px;line-height:1.5;color:#64748b;margin:0;">
-          Este é um e-mail operacional do SellerOS. Caso você não reconheça esta ação, ignore esta mensagem.
+          Este é um e-mail operacional do MarketPlace Seller Platform. Caso você não reconheça esta ação, ignore esta mensagem.
         </p>
       </div>
     </div>
@@ -90,11 +90,11 @@ def send_invite_email(to_email: str, invite_url: str, org_name: str) -> bool:
     safe_org = html.escape(org_name or "sua organização")
     safe_url = html.escape(invite_url or "", quote=True)
     body = f'''
-      <p>Você foi convidado para acessar a organização <strong>{safe_org}</strong> no SellerOS.</p>
+      <p>Você foi convidado para acessar a organização <strong>{safe_org}</strong> no MarketPlace Seller Platform.</p>
       <p>Use o botão abaixo para aceitar o convite e concluir seu primeiro acesso.</p>
       <p style="font-size:13px;color:#64748b;">Link de convite: <a href="{safe_url}">{safe_url}</a></p>
     '''
-    return _send_email(to_email, f"Convite para acessar {org_name or 'SellerOS'}", _base_html("Convite para o SellerOS", body, "Aceitar convite", invite_url))
+    return _send_email(to_email, f"Convite para acessar {org_name or 'MarketPlace Seller Platform'}", _base_html("Convite para o MarketPlace Seller Platform", body, "Aceitar convite", invite_url))
 
 
 def send_welcome_email(to_email: str, user_name: str, org_name: str) -> bool:
@@ -103,10 +103,10 @@ def send_welcome_email(to_email: str, user_name: str, org_name: str) -> bool:
     safe_org = html.escape(org_name or "sua operação")
     body = f'''
       <p>Olá, <strong>{safe_name}</strong>.</p>
-      <p>Seu acesso ao SellerOS para <strong>{safe_org}</strong> está ativo.</p>
+      <p>Seu acesso ao MarketPlace Seller Platform para <strong>{safe_org}</strong> está ativo.</p>
       <p>Você já pode conectar o Mercado Livre, sincronizar o catálogo e acompanhar os principais sinais operacionais.</p>
     '''
-    return _send_email(to_email, "Bem-vindo ao SellerOS", _base_html("Bem-vindo ao SellerOS", body))
+    return _send_email(to_email, "Bem-vindo ao MarketPlace Seller Platform", _base_html("Bem-vindo ao MarketPlace Seller Platform", body))
 
 
 def send_sync_complete_email(to_email: str, user_name: str, total_synced: int) -> bool:
@@ -116,7 +116,7 @@ def send_sync_complete_email(to_email: str, user_name: str, total_synced: int) -
     body = f'''
       <p>Olá, <strong>{safe_name}</strong>.</p>
       <p>A sincronização do catálogo Mercado Livre foi concluída.</p>
-      <p><strong>{total}</strong> produto(s) foram processados pelo SellerOS.</p>
+      <p><strong>{total}</strong> produto(s) foram processados pelo MarketPlace Seller Platform.</p>
       <p>Agora você pode revisar Buy Box, saúde da conta, perguntas, pricing, forecast e análise de portfólio.</p>
     '''
     return _send_email(to_email, "Sincronização de catálogo concluída", _base_html("Catálogo sincronizado", body))
@@ -125,12 +125,12 @@ def send_sync_complete_email(to_email: str, user_name: str, total_synced: int) -
 def send_billing_confirmation_email(to_email: str, user_name: str, plan_name: str, value_brl: str) -> bool:
     """Confirma assinatura de plano após pagamento aprovado."""
     safe_name = html.escape(user_name or "seller")
-    safe_plan = html.escape(plan_name or "plano SellerOS")
+    safe_plan = html.escape(plan_name or "plano MarketPlace Seller Platform")
     safe_value = html.escape(value_brl or "")
     body = f'''
       <p>Olá, <strong>{safe_name}</strong>.</p>
       <p>Sua assinatura do plano <strong>{safe_plan}</strong> foi registrada com sucesso.</p>
       <p>Valor: <strong>{safe_value}</strong></p>
-      <p>Você pode acompanhar status de assinatura, limites e uso na área de Billing do SellerOS.</p>
+      <p>Você pode acompanhar status de assinatura, limites e uso na área de Billing do MarketPlace Seller Platform.</p>
     '''
-    return _send_email(to_email, "Assinatura SellerOS confirmada", _base_html("Assinatura confirmada", body))
+    return _send_email(to_email, "Assinatura MarketPlace Seller Platform confirmada", _base_html("Assinatura confirmada", body))

@@ -1,12 +1,12 @@
 {
-  "name": "SellerOS — Portfólio de Engenharia",
-  "short_name": "SellerOS",
+  "name": "MarketPlace Seller Platform — Portfólio de Engenharia",
+  "short_name": "MP Portfolio",
   "description": "Demonstração interativa com dados sintéticos.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#07111f",
-  "theme_color": "#07111f",
+  "background_color": "#f3f4f0",
+  "theme_color": "#f3f4f0",
   "icons": [
     {
       "src": "/icon.svg",

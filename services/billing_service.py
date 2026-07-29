@@ -127,23 +127,23 @@ def _clean_customer(customer: dict[str, Any]) -> dict[str, Any]:
 def _build_subscription_payload(plan_code: str, customer_id: str | None, customer_payload: dict[str, Any], tenant_id: str) -> dict[str, Any]:
     plan = serialize_plan(plan_code)
     item = {
-        "description": f"SellerOS {plan['name']} mensal",
+        "description": f"MarketPlace Seller Platform {plan['name']} mensal",
         "quantity": 1,
         "pricing_scheme": {"scheme_type": "unit", "price": int(plan["monthly_price_cents"])}
     }
     payload: dict[str, Any] = {
-        "code": f"selleros-{tenant_id}-{plan_code.lower()}",
+        "code": f"marketplace-seller-platform-{tenant_id}-{plan_code.lower()}",
         "interval": "month",
         "interval_count": 1,
         "billing_type": "prepaid",
         "items": [item],
-        "metadata": {"tenant_id": str(tenant_id), "plan_code": plan_code, "source": "selleros"},
+        "metadata": {"tenant_id": str(tenant_id), "plan_code": plan_code, "source": "marketplace-seller-platform"},
     }
     if customer_id:
         payload["customer_id"] = customer_id
     else:
         payload["customer"] = customer_payload
-    # Sem dados de cartão no SellerOS. O pagamento deve ser concluído via checkout/card_id/token configurado fora desta rota.
+    # Sem dados de cartão no MarketPlace Seller Platform. O pagamento deve ser concluído via checkout/card_id/token configurado fora desta rota.
     return payload
 
 

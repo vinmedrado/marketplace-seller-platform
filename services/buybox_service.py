@@ -1,6 +1,6 @@
 """PATCH 8/10 — Buy Box Probability Score service.
 
-Gera score interno SellerOS por produto com base em catálogo sincronizado,
+Gera score interno MarketPlace Seller Platform por produto com base em catálogo sincronizado,
 última saúde da conta e referência pública de mercado quando disponível.
 """
 from __future__ import annotations
@@ -134,7 +134,7 @@ def _create_action_if_needed(db: Session, tenant_id: str, product: Product, resu
         action_type = "BUYBOX_RISK"
         priority = "HIGH"
         title = f"Risco de Buy Box: {product.title or product.titulo}"
-        explanation = "Score interno SellerOS indica baixa probabilidade estimada de Buy Box no preço atual."
+        explanation = "Score interno MarketPlace Seller Platform indica baixa probabilidade estimada de Buy Box no preço atual."
     elif best.get("variation_percent", 0) < 0:
         action_type = "PRICE_ADJUSTMENT_RECOMMENDED"
         priority = "MEDIUM"
@@ -267,6 +267,6 @@ def buybox_overview(db: Session, tenant_id: str, *, limit: int = 30) -> dict[str
         "items": sorted(items, key=lambda i: i["current_probability"]),
         "high_risk": sorted(high_risk, key=lambda i: i["current_probability"]),
         "opportunities": sorted(opportunities, key=lambda i: (i.get("best_adjustment_probability") or 0) - i["current_probability"], reverse=True),
-        "disclaimer": "Score interno SellerOS. Não é métrica oficial do Mercado Livre.",
+        "disclaimer": "Score interno MarketPlace Seller Platform. Não é métrica oficial do Mercado Livre.",
         "generated_at": _iso(datetime.utcnow()),
     }

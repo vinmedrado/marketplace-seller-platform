@@ -36,7 +36,7 @@ export default function PortfolioAnalysis(){
         <span className="status-badge text-emerald-200">PATCH 14/15 FINAL · Portfólio estratégico · Dados reais disponíveis</span>
         <h2 className="text-4xl font-black mt-4">Análise de Portfólio</h2>
         <p className="text-slate-300 mt-3 text-lg">Classifique produtos por giro, margem, risco e oportunidade para decidir onde priorizar, melhorar, ajustar preço, repor estoque ou descontinuar.</p>
-        <p className="text-slate-400 mt-3 text-sm">Classificação interna SellerOS baseada nos dados disponíveis. Quanto mais dados financeiros e históricos, maior a precisão.</p>
+        <p className="text-slate-400 mt-3 text-sm">Classificação interna MarketPlace Seller Platform baseada nos dados disponíveis. Quanto mais dados financeiros e históricos, maior a precisão.</p>
       </div>
     </div>
 

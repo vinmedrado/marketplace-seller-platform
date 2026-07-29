@@ -1,7 +1,7 @@
 """PATCH 11/15 — Previsão de Demanda + Ponto de Recompra.
 
 Heurística estatística inicial, sem ML fake. Usa somente dados reais já
-persistidos no SellerOS: estoque atual, sold_quantity, histórico de snapshots e
+persistidos no MarketPlace Seller Platform: estoque atual, sold_quantity, histórico de snapshots e
 última sincronização do catálogo.
 """
 from __future__ import annotations
@@ -328,7 +328,7 @@ def _persist_intelligence_signals(db: Session, tenant_id: str, product: Product,
                 severity="critical" if forecast.get("stock_risk") == "critical" else "warning",
                 title="Risco de ruptura de estoque",
                 message=(
-                    "🚨 SellerOS — Risco de Estoque\n"
+                    "🚨 MarketPlace Seller Platform — Risco de Estoque\n"
                     f"Produto: {_product_title(product)}\n"
                     f"Estoque atual: {_int(product.available_quantity or product.estoque)}\n"
                     f"Dias restantes estimados: {forecast.get('estimated_days_remaining')}\n"
@@ -384,7 +384,7 @@ def forecast_overview(db: Session, tenant_id: str, limit: int = 80, lead_time_da
         "slow_movers": slow_movers[:10],
         "opportunities": opportunities[:10],
         "generated_at": _iso(_now()),
-        "disclaimer": "Previsão heurística interna SellerOS baseada em dados disponíveis. Não é garantia de vendas futuras.",
+        "disclaimer": "Previsão heurística interna MarketPlace Seller Platform baseada em dados disponíveis. Não é garantia de vendas futuras.",
     }
 
 

@@ -1,4 +1,4 @@
-"""Limites comerciais do SellerOS por plano.
+"""Limites comerciais do MarketPlace Seller Platform por plano.
 
 PATCH 10/10 — camada SaaS monetizável. Os limites são soft-first: retornam
 warnings e flags para bloqueios graduais, sem derrubar login/dashboard.
