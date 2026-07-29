@@ -64,7 +64,7 @@ Python, FastAPI, React, PostgreSQL, SQLAlchemy, Alembic, Docker, Machine Learnin
 
 ## GIF
 
-TODO: gravar um GIF curto com a abertura da demo publica, navegacao pela visao executiva e uma tela de pricing/forecast.
+![Marketplace Seller Platform demo](assets/demo/demo.gif)
 
 ## Screenshots
 
