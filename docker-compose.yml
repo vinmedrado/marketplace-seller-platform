@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: marketplace_seller_platform
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d marketplace_seller_platform"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    environment:
+      ENV: ${ENV:-development}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@postgres:5432/marketplace_seller_platform}
+      API_SECRET_KEY: ${API_SECRET_KEY:-dev-secret-change-in-prod}
+      ENABLE_DEMO_USER: ${ENABLE_DEMO_USER:-true}
+      FERNET_KEY: ${FERNET_KEY:-}
+      ML_CLIENT_ID: ${ML_CLIENT_ID:-}
+      ML_CLIENT_SECRET: ${ML_CLIENT_SECRET:-}
+      ML_REDIRECT_URI: ${ML_REDIRECT_URI:-http://localhost:8000/auth/ml/callback}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      SEED_DEMO: "true"
+    ports: ["8000:8000"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
+    ports: ["5173:80"]
+    depends_on: [backend]
+
+volumes:
+  pgdata:

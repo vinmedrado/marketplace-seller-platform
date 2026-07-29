@@ -1,0 +1,56 @@
+{
+  "name": "SellerOS Marketplace Platform",
+  "short_name": "SellerOS",
+  "description": "Console operacional pessoal para sellers de marketplace.",
+  "start_url": "/app/dashboard?source=pwa",
+  "scope": "/",
+  "id": "/selleros-pwa",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "browser"
+  ],
+  "background_color": "#050816",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait-primary",
+  "categories": [
+    "business",
+    "productivity",
+    "shopping"
+  ],
+  "icons": [
+    {
+      "src": "/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "url": "/app/dashboard",
+      "description": "Abrir cockpit operacional"
+    },
+    {
+      "name": "Alertas",
+      "short_name": "Alertas",
+      "url": "/app/alerts",
+      "description": "Ver alertas críticos"
+    },
+    {
+      "name": "Scanner de Preços",
+      "short_name": "Scanner",
+      "url": "/app/pricing-scanner",
+      "description": "Revisar concorrência e preços"
+    }
+  ]
+}

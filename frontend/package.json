@@ -1,0 +1,44 @@
+{
+  "name": "marketplace-seller-platform-frontend",
+  "version": "1.3.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -b && vite build",
+    "check": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "node tests/contracts.test.mjs",
+    "preview": "vite preview",
+    "pwa:preview": "npm run build && vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "5.101.4",
+    "axios": "1.18.1",
+    "framer-motion": "12.43.0",
+    "lucide-react": "1.27.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-hook-form": "7.83.0",
+    "react-router-dom": "7.18.2",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "6.0.4",
+    "autoprefixer": "10.5.4",
+    "eslint": "10.8.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.3",
+    "postcss": "8.5.25",
+    "tailwindcss": "3.4.19",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.65.0",
+    "vite": "8.1.5"
+  }
+}

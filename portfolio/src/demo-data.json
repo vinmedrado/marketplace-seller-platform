@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "scenario": "Loja Aurora — operação fictícia",
+    "generatedAt": "2026-07-29T12:00:00Z",
+    "notice": "Todos os nomes, valores, pedidos e eventos desta demonstração são sintéticos."
+  },
+  "kpis": [
+    {"label": "GMV mensal", "value": 286450, "kind": "currency", "delta": 12.8},
+    {"label": "Margem média", "value": 23.7, "kind": "percent", "delta": 2.4},
+    {"label": "Buy Box", "value": 78.4, "kind": "percent", "delta": 6.1},
+    {"label": "Saúde operacional", "value": 92, "kind": "score", "delta": 4.0}
+  ],
+  "revenueSeries": [
+    {"label": "Jan", "value": 172000}, {"label": "Fev", "value": 184500},
+    {"label": "Mar", "value": 198300}, {"label": "Abr", "value": 221900},
+    {"label": "Mai", "value": 236400}, {"label": "Jun", "value": 257800},
+    {"label": "Jul", "value": 272100}, {"label": "Ago", "value": 286450}
+  ],
+  "products": [
+    {"id": "P-1001", "sku": "AUR-FONE-01", "title": "Fone Bluetooth Aurora Pro", "category": "Eletrônicos", "price": 219.9, "cost": 104.5, "stock": 84, "sold30d": 196, "margin": 27.1, "buyBox": 91, "risk": "healthy"},
+    {"id": "P-1002", "sku": "AUR-CAF-02", "title": "Cafeteira Compacta 20 Bar", "category": "Casa", "price": 489.9, "cost": 271.3, "stock": 19, "sold30d": 88, "margin": 18.6, "buyBox": 73, "risk": "high"},
+    {"id": "P-1003", "sku": "AUR-TEN-03", "title": "Tênis Run Flex Masculino", "category": "Esportes", "price": 279.9, "cost": 126.7, "stock": 142, "sold30d": 124, "margin": 30.4, "buyBox": 82, "risk": "healthy"},
+    {"id": "P-1004", "sku": "AUR-LUM-04", "title": "Luminária LED Smart Wi-Fi", "category": "Casa", "price": 149.9, "cost": 71.2, "stock": 233, "sold30d": 31, "margin": 25.2, "buyBox": 59, "risk": "slow"},
+    {"id": "P-1005", "sku": "AUR-MOC-05", "title": "Mochila Executiva Antifurto", "category": "Acessórios", "price": 189.9, "cost": 88.9, "stock": 57, "sold30d": 109, "margin": 28.5, "buyBox": 86, "risk": "healthy"},
+    {"id": "P-1006", "sku": "AUR-MIX-06", "title": "Mixer Vertical 3 em 1", "category": "Casa", "price": 169.9, "cost": 102.4, "stock": 12, "sold30d": 74, "margin": 12.8, "buyBox": 62, "risk": "critical"},
+    {"id": "P-1007", "sku": "AUR-REL-07", "title": "Smartwatch Active S2", "category": "Eletrônicos", "price": 329.9, "cost": 158.1, "stock": 65, "sold30d": 152, "margin": 26.1, "buyBox": 88, "risk": "healthy"},
+    {"id": "P-1008", "sku": "AUR-GAR-08", "title": "Garrafa Térmica Inox 1L", "category": "Casa", "price": 119.9, "cost": 54.8, "stock": 97, "sold30d": 117, "margin": 29.3, "buyBox": 80, "risk": "healthy"}
+  ],
+  "pricing": [
+    {"productId": "P-1006", "current": 169.9, "suggested": 181.9, "market": 184.5, "impact": 888, "confidence": 89, "reason": "Margem abaixo da meta com espaço competitivo."},
+    {"productId": "P-1002", "current": 489.9, "suggested": 474.9, "market": 469.7, "impact": 1320, "confidence": 84, "reason": "Concorrente líder reduziu preço em 3,2%."},
+    {"productId": "P-1004", "current": 149.9, "suggested": 139.9, "market": 137.4, "impact": 620, "confidence": 78, "reason": "Baixo giro e cobertura de estoque elevada."},
+    {"productId": "P-1001", "current": 219.9, "suggested": 224.9, "market": 229.1, "impact": 980, "confidence": 92, "reason": "Buy Box forte permite captura segura de margem."}
+  ],
+  "competitors": [
+    {"seller": "Nova Commerce", "productId": "P-1002", "price": 469.7, "reputation": 98, "shipping": "Full", "signal": "price_drop"},
+    {"seller": "Digital Prime", "productId": "P-1006", "price": 184.5, "reputation": 96, "shipping": "Grátis", "signal": "opportunity"},
+    {"seller": "Casa Viva", "productId": "P-1004", "price": 137.4, "reputation": 94, "shipping": "Grátis", "signal": "slow_market"},
+    {"seller": "Tech Orbit", "productId": "P-1001", "price": 229.1, "reputation": 99, "shipping": "Full", "signal": "stable"}
+  ],
+  "actions": [
+    {"id": "A-01", "priority": "critical", "title": "Proteger margem do Mixer 3 em 1", "source": "Pricing Engine", "impact": 888, "confidence": 89, "status": "pending"},
+    {"id": "A-02", "priority": "high", "title": "Repor estoque da Cafeteira 20 Bar", "source": "Forecast", "impact": 4120, "confidence": 87, "status": "pending"},
+    {"id": "A-03", "priority": "high", "title": "Responder ataque competitivo", "source": "War Room", "impact": 1320, "confidence": 84, "status": "pending"},
+    {"id": "A-04", "priority": "medium", "title": "Reduzir cobertura da Luminária Smart", "source": "Portfolio Analysis", "impact": 620, "confidence": 78, "status": "pending"},
+    {"id": "A-05", "priority": "medium", "title": "Capturar margem no Fone Aurora Pro", "source": "Buy Box", "impact": 980, "confidence": 92, "status": "pending"}
+  ],
+  "forecast": [
+    {"productId": "P-1002", "dailySales": 2.93, "daysRemaining": 6, "reorderPoint": 62, "trend": "increasing", "risk": "critical", "confidence": 87},
+    {"productId": "P-1006", "dailySales": 2.47, "daysRemaining": 5, "reorderPoint": 45, "trend": "stable", "risk": "critical", "confidence": 82},
+    {"productId": "P-1007", "dailySales": 5.07, "daysRemaining": 13, "reorderPoint": 80, "trend": "increasing", "risk": "high", "confidence": 91},
+    {"productId": "P-1004", "dailySales": 1.03, "daysRemaining": 226, "reorderPoint": 18, "trend": "decreasing", "risk": "slow", "confidence": 78},
+    {"productId": "P-1001", "dailySales": 6.53, "daysRemaining": 13, "reorderPoint": 96, "trend": "stable", "risk": "medium", "confidence": 93}
+  ],
+  "transactions": [
+    {"id": "ORD-80421", "date": "29/07", "gross": 219.9, "fees": 35.18, "shipping": 12.4, "netExpected": 172.32, "netReceived": 172.32, "status": "matched"},
+    {"id": "ORD-80420", "date": "29/07", "gross": 489.9, "fees": 78.38, "shipping": 18.9, "netExpected": 392.62, "netReceived": 388.42, "status": "divergent"},
+    {"id": "ORD-80418", "date": "28/07", "gross": 329.9, "fees": 52.78, "shipping": 0, "netExpected": 277.12, "netReceived": 277.12, "status": "matched"},
+    {"id": "ORD-80415", "date": "28/07", "gross": 169.9, "fees": 27.18, "shipping": 11.2, "netExpected": 131.52, "netReceived": 131.52, "status": "matched"},
+    {"id": "ORD-80411", "date": "27/07", "gross": 279.9, "fees": 44.78, "shipping": 0, "netExpected": 235.12, "netReceived": 235.12, "status": "matched"}
+  ],
+  "ml": {
+    "metrics": {"mae": 7.84, "rmse": 11.26, "r2": 0.91, "samples": 18420, "version": "pricing-rf-2026.07"},
+    "features": [
+      {"name": "preço concorrência", "importance": 31},
+      {"name": "custo total", "importance": 24},
+      {"name": "margem mínima", "importance": 18},
+      {"name": "vendas concorrentes", "importance": 14},
+      {"name": "cobertura de estoque", "importance": 13}
+    ],
+    "predictions": [
+      {"productId": "P-1001", "predicted": 224.9, "actual": 219.9, "confidence": 92},
+      {"productId": "P-1002", "predicted": 474.9, "actual": 489.9, "confidence": 84},
+      {"productId": "P-1006", "predicted": 181.9, "actual": 169.9, "confidence": 89}
+    ]
+  }
+}

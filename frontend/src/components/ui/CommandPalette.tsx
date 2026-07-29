@@ -1,0 +1,14 @@
+import { useEffect, useMemo, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { Command, Search } from 'lucide-react';
+import { jobs, products } from '../../api/client';
+
+const pages=[['Dashboard','/app/dashboard'],['Produtos','/app/produtos'],['Concorrência','/app/concorrencia'],['Precificação','/app/precificacao'],['Publicação','/app/publicacao'],['ML / Inteligência','/app/inteligencia'],['Intelligence Center','/app/intelligence-center'],['AI Copilot','/app/ai-copilot'],['Action Center','/app/action-center'],['Market War Room','/app/market-war-room'],['Executive Summary','/app/executive-summary'],['Operational Timeline','/app/timeline'],['Health Monitoring','/app/health'],['Simulador Executivo','/app/simulador'],['Jobs','/app/jobs'],['Usuários','/app/usuarios'],['Plano','/app/plano'],['Marketplace','/app/marketplace'],['Configurações','/app/configuracoes']];
+export default function CommandPalette(){
+ const [open,setOpen]=useState(false); const [q,setQ]=useState(''); const nav=useNavigate();
+ const {data:ps}=useQuery({queryKey:['products'],queryFn:products,enabled:open}); const {data:js}=useQuery({queryKey:['jobs'],queryFn:jobs,enabled:open});
+ useEffect(()=>{const h=(e:KeyboardEvent)=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();setOpen(v=>!v)}};window.addEventListener('keydown',h);return()=>window.removeEventListener('keydown',h)},[]);
+ const results=useMemo(()=>[...pages.map(([label,url])=>({label,sub:'Página',url})),...(ps||[]).map((p:any)=>({label:p.titulo,sub:`Produto · ${p.sku}`,url:`/app/produtos/${p.id}`})),...(js||[]).map((j:any)=>({label:`Job ${j.job_type}`,sub:j.status,url:'/app/jobs'}))].filter((x:any)=>(x.label+x.sub).toLowerCase().includes(q.toLowerCase())).slice(0,10),[q,ps,js]);
+ if(!open)return null; return <div className="fixed inset-0 bg-black/45 backdrop-blur-sm z-[80] flex justify-center pt-28" onClick={()=>setOpen(false)}><div className="glass premium-border rounded-[2rem] w-[680px] max-w-[92vw] h-fit p-4" onClick={e=>e.stopPropagation()}><div className="flex items-center gap-3 bg-white/10 rounded-2xl px-4 py-3 border border-white/10"><Search size={18}/><input autoFocus className="bg-transparent outline-none flex-1" placeholder="Buscar produtos, jobs, páginas e ações rápidas..." value={q} onChange={e=>setQ(e.target.value)}/><Command size={16}/><span className="text-xs text-slate-400">Ctrl K</span></div><div className="mt-3 space-y-2">{results.map((r:any)=><button key={r.url+r.label} className="w-full text-left rounded-2xl p-4 hover:bg-white/10 transition flex justify-between" onClick={()=>{nav(r.url);setOpen(false)}}><span><b>{r.label}</b><p className="text-sm text-slate-400">{r.sub}</p></span><span className="text-sky-200">Abrir</span></button>)}</div></div></div>
+}

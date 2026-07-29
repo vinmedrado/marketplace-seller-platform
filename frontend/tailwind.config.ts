@@ -1,0 +1,1 @@
+export default {content:['./index.html','./src/**/*.{ts,tsx}'],theme:{extend:{boxShadow:{glow:'0 0 60px rgba(59,130,246,.35)'},animation:{float:'float 6s ease-in-out infinite'},keyframes:{float:{'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-14px)'}}}}},plugins:[]};

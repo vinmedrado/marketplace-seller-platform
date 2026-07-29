@@ -1,0 +1,36 @@
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
+import { dashboard, marketDashboard, portfolioAnalysis, systemStatus, money } from '../api/client';
+import Page from '../components/animations/Page';
+import { Card, Skeleton } from '../components/ui/Card';
+import { EmptyState } from '../components/ui/EmptyState';
+import { AnimatedCounter } from '../components/ui/AnimatedCounter';
+import { LineChart, Line, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis } from 'recharts';
+
+export default function Dashboard() {
+  const { data, isLoading, isError } = useQuery({ queryKey: ['dashboard'], queryFn: dashboard });
+  const { data: market } = useQuery({ queryKey: ['market-dashboard'], queryFn: marketDashboard });
+  const { data: portfolio } = useQuery({ queryKey: ['portfolio-dashboard-lite'], queryFn: portfolioAnalysis });
+  const { data: status } = useQuery({ queryKey: ['system-status-lite'], queryFn: systemStatus });
+  if (isLoading) return <Page><div className="grid md:grid-cols-5 gap-4">{Array.from({ length: 5 }).map((_, i) => <Skeleton key={i} className="h-32" />)}</div><Skeleton className="h-80 mt-4" /></Page>;
+  if (isError) return <Page><Card><b>Backend indisponível</b><p className="text-slate-400 mt-2">Não foi possível carregar o dashboard. Verifique a API e tente novamente.</p></Card></Page>;
+  const series = data?.series_margem || [];
+  const products = data?.produtos_prioritarios || [];
+  const jobs = data?.jobs_recentes || [];
+  const pubs = data?.publicacoes_recentes || [];
+  const mk = market?.commercial_kpis || {};
+  const insights = market?.commercial_insights || [];
+  const k = [['Receita potencial', mk.estimated_potential_revenue || 0, 'money'], ['Margem protegida', mk.protected_margin_value || 0, 'money'], ['Risco margem', mk.products_at_margin_risk || 0, ''], ['Oportunidades', mk.price_increase_opportunities || data.oportunidades_repricing, ''], ['Alertas críticos', mk.critical_alerts || 0, '']];
+  return <Page>
+    <div className="grid md:grid-cols-5 gap-4">{k.map(x => <Card key={String(x[0])}><p className="text-slate-400">{x[0]}</p><b className="text-3xl">{x[2] === 'money' ? money(Number(x[1] || 0)) : <AnimatedCounter value={Number(x[1] || 0)} suffix={String(x[2])}/>}</b></Card>)}</div>
+    {data.empty && <Card className="mt-4"><EmptyState title="Demo pronta para operar" description="Cadastre ou importe produtos para liberar pricing, concorrência, publicações dry-run e jobs operacionais." /></Card>}
+
+    <Card className="mt-4"><div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4"><div><h2 className="font-bold text-xl">Cockpit operacional final</h2><p className="text-slate-400">Ações rápidas para operar o SellerOS no desktop ou celular.</p></div><div className="flex flex-wrap gap-2"><Link className="btn btn-primary" to="/app/marketplace">Sincronizar catálogo</Link><Link className="btn btn-ghost" to="/app/pricing-scanner">Pricing Scanner</Link><Link className="btn btn-ghost" to="/app/questions">Perguntas abertas</Link><Link className="btn btn-ghost" to="/app/alerts">Configurar alertas</Link><Link className="btn btn-ghost" to="/app/buybox">Revisar Buy Box</Link><Link className="btn btn-ghost" to="/app/forecast">Revisar Forecast</Link></div></div><div className="grid md:grid-cols-4 gap-3 mt-4"><div className="rounded-2xl bg-white/10 p-4 border border-white/10"><p className="text-slate-400 text-sm">Saúde portfólio</p><b className="text-2xl">{portfolio?.summary?.portfolio_health_score ?? '—'}</b></div><div className="rounded-2xl bg-white/10 p-4 border border-white/10"><p className="text-slate-400 text-sm">Estrelas</p><b className="text-2xl">{portfolio?.summary?.stars ?? '—'}</b></div><div className="rounded-2xl bg-white/10 p-4 border border-white/10"><p className="text-slate-400 text-sm">Alertas ativos</p><b className="text-2xl">{status?.active_alerts ?? '—'}</b></div><div className="rounded-2xl bg-white/10 p-4 border border-white/10"><p className="text-slate-400 text-sm">PWA</p><b className="text-2xl">Ativo</b></div></div></Card>
+
+    <Card className="mt-4"><div className="flex justify-between items-center gap-3 mb-4"><div><h2 className="font-bold">Insights automáticos</h2><p className="text-slate-400">Prioridade, recomendação e impacto estimado para decisão executiva.</p></div><span className="status-badge">Market-ready</span></div>{insights.length ? <div className="grid md:grid-cols-3 gap-3">{insights.slice(0,3).map((i:any) => <div key={i.type + i.title} className="rounded-2xl bg-white/10 p-4 border border-white/10"><span className="status-badge">{i.priority}</span><b className="block mt-3">{i.title}</b><p className="text-slate-300 text-sm mt-2">{i.description}</p><p className="text-sky-200 text-sm mt-2">Impacto: {money(i.impact_estimated)}</p></div>)}</div> : <EmptyState title="Sem alertas críticos" description="Quando houver risco de margem, estoque baixo ou concorrência agressiva, os cards aparecerão aqui." />}</Card>
+
+    <div className="grid lg:grid-cols-2 gap-4 mt-4"><Card><h2 className="font-bold mb-4">Margem e preço</h2>{series.length ? <ResponsiveContainer width="100%" height={280}><LineChart data={series}><Tooltip/><XAxis dataKey="label"/><YAxis/><Line dataKey="margem" strokeWidth={3}/><Line dataKey="preco" strokeWidth={3}/></LineChart></ResponsiveContainer> : <EmptyState title="Sem histórico de pricing" description="Rode um cálculo de preço para gerar a primeira série real." />}</Card><Card><h2 className="font-bold mb-4">Oportunidades</h2>{series.length ? <ResponsiveContainer width="100%" height={280}><BarChart data={series}><Tooltip/><XAxis dataKey="label"/><YAxis/><Bar dataKey="margem" radius={[10,10,0,0]}/></BarChart></ResponsiveContainer> : <EmptyState title="Nenhuma oportunidade calculada" description="A tela exibirá oportunidades assim que houver pricing salvo." />}</Card></div>
+    <Card className="mt-4"><h2 className="font-bold mb-4">Produtos prioritários</h2>{products.length ? <div className="grid md:grid-cols-3 gap-3">{products.map((p: any) => <div key={p.id} className="rounded-2xl bg-white/10 p-4 border border-white/10"><b>{p.sku} · {p.titulo}</b><p className="text-slate-400 text-sm">Estoque {p.estoque} · base {money(p.preco_base)} · custo {money(p.custo)}</p></div>)}</div> : <EmptyState title="Nenhum produto ativo" description="Produtos cadastrados aparecerão aqui com base nos dados reais do backend." />}</Card>
+    <div className="grid lg:grid-cols-2 gap-4 mt-4"><Card><h2 className="font-bold mb-4">Jobs recentes</h2>{jobs.length ? jobs.map((j: any) => <div key={j.id} className="rounded-2xl bg-white/10 p-3 mb-2 flex justify-between border border-white/10"><span>{j.tipo} · {j.label}</span><b className="status-badge">{j.status}</b></div>) : <EmptyState title="Sem jobs ainda" description="Inicie um job de scraping, pricing, publish ou ML para acompanhar progresso." />}</Card><Card><h2 className="font-bold mb-4">Publicações recentes</h2>{pubs.length ? pubs.map((p: any) => <div key={p.id} className="rounded-2xl bg-white/10 p-3 mb-2 flex justify-between border border-white/10"><span>{p.marketplace}</span><b className="status-badge">{p.status}</b></div>) : <EmptyState title="Nenhum dry-run" description="As simulações de publicação aparecerão aqui." />}</Card></div>
+  </Page>;
+}
