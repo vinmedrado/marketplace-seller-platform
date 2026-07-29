@@ -2,6 +2,7 @@
   "name": "marketplace-seller-platform-frontend",
   "version": "1.3.0",
   "private": true,
+  "packageManager": "npm@10.9.4",
   "type": "module",
   "engines": {
     "node": ">=22.12.0"
