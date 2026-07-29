@@ -36,8 +36,7 @@ automaticamente.
 O console usa `sessionStorage`, reduzindo persistência entre sessões, mas
 cookies HttpOnly seriam a evolução recomendada para um produto público.
 
-O console privado mantém React Router para navegação SPA. O `npm audit` atual
-aponta advisories de RSC/Server Actions nessa dependência; esses recursos não
-são usados pelo projeto cliente-only. A demo pública não usa React Router e
-possui auditoria npm sem vulnerabilidades conhecidas. A dependência deve
-continuar sendo atualizada quando houver correção upstream sem regressão.
+O console privado usa um roteador local limitado às primitivas necessárias
+pela SPA, sem Server Components ou Server Actions. A resolução mantém o nome
+de módulo usado pelos componentes por meio de aliases do TypeScript e Vite.
+Os dois frontends possuem auditoria npm sem vulnerabilidades conhecidas.

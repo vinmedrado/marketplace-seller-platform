@@ -102,7 +102,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="system-status" element={<SystemStatus />} />
                 <Route path="configuracoes" element={<Settings />} />
                 <Route path="privacidade" element={<Privacy />} />
-                <Route index element={<Navigate to="onboarding" />} />
+                <Route index element={<Navigate to="/app/onboarding" replace />} />
               </Route>
             </Routes>
           </Suspense>

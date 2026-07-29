@@ -18,7 +18,8 @@
     "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
-      "recharts": ["src/components/charts/Recharts.tsx"]
+      "recharts": ["src/components/charts/Recharts.tsx"],
+      "react-router-dom": ["src/components/router/Router.tsx"]
     }
   },
   "include": ["src"],

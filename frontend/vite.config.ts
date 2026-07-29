@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       recharts: fileURLToPath(new URL('./src/components/charts/Recharts.tsx', import.meta.url)),
+      'react-router-dom': fileURLToPath(new URL('./src/components/router/Router.tsx', import.meta.url)),
     },
   },
   server: { port: 5173 },
