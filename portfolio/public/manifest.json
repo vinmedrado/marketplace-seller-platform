@@ -2,14 +2,14 @@
   "name": "MarketPlace Seller Platform — Portfólio de Engenharia",
   "short_name": "MP Portfolio",
   "description": "Demonstração interativa com dados sintéticos.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#f3f4f0",
   "theme_color": "#f3f4f0",
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"

@@ -14,6 +14,16 @@ type Action = {
 };
 
 const data = rawData;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const publicPath = (path: string) => `${basePath}${path}` || '/';
+const assetPath = (file: string) => `${import.meta.env.BASE_URL}${file}`;
+const currentRoute = () => {
+  const pathname = window.location.pathname;
+  if (basePath && (pathname === basePath || pathname.startsWith(`${basePath}/`))) {
+    return pathname.slice(basePath.length) || '/';
+  }
+  return pathname;
+};
 const money = (value: number) => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 const number = (value: number) => value.toLocaleString('pt-BR');
 const riskLabel: Record<Risk, string> = {
@@ -37,9 +47,9 @@ const nav = [
 ] as const;
 
 function usePortfolioRouter() {
-  const [path, setPath] = useState(window.location.pathname);
+  const [path, setPath] = useState(currentRoute);
   useEffect(() => {
-    const onPopState = () => setPath(window.location.pathname);
+    const onPopState = () => setPath(currentRoute());
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
@@ -50,7 +60,7 @@ function AppLink({ to, children, className, onClick: afterNavigate }: { to: stri
   const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    window.history.pushState({}, '', to);
+    window.history.pushState({}, '', publicPath(to));
     window.dispatchEvent(new PopStateEvent('popstate'));
     window.scrollTo({ top: 0, behavior: 'smooth' });
     afterNavigate?.();
@@ -88,7 +98,7 @@ function Shell({ children, reset, exit, path }: { children: React.ReactNode; res
     <div className="app-shell">
       <aside className={mobileOpen ? 'sidebar open' : 'sidebar'}>
         <div className="brand">
-          <img className="brand-logo" src="/logo-horizontal.svg" alt="MarketPlace Seller Platform" />
+          <img className="brand-logo" src={assetPath('logo-horizontal.svg')} alt="MarketPlace Seller Platform" />
         </div>
         <nav aria-label="Navegação principal">
           {nav.map(([routePath, label, icon]) => (
@@ -152,7 +162,7 @@ function AccessPage({ onEnter }: { onEnter: () => void }) {
   return (
     <div className="access-page">
       <header className="access-header">
-        <img className="access-logo" src="/logo-horizontal.svg" alt="MarketPlace Seller Platform" />
+        <img className="access-logo" src={assetPath('logo-horizontal.svg')} alt="MarketPlace Seller Platform" />
         <span>Projeto de portfólio · 2026</span>
       </header>
       <main className="access-main">
@@ -356,7 +366,7 @@ function Architecture() {
   return (
     <>
       <PageHeader eyebrow="BEHIND THE PRODUCT" title="Como o sistema funciona" text="A demo pública é isolada; o console pessoal continua conectado à arquitetura full-stack real." />
-      <div className="truth-banner"><strong>Transparência por design</strong><span>Esta aplicação Netlify importa um JSON versionado. Ela não possui endpoint, usuário, token ou banco remoto.</span></div>
+      <div className="truth-banner"><strong>Transparência por design</strong><span>Esta aplicação pública importa um JSON versionado. Ela não possui endpoint, usuário, token ou banco remoto.</span></div>
       <section className="card architecture">
         <span className="eyebrow">ARQUITETURA DO CONSOLE PESSOAL</span><h2>Fluxo de uma decisão operacional</h2>
         <div className="architecture-flow">
@@ -371,7 +381,7 @@ function Architecture() {
         <article className="card"><span className="eyebrow">DECISÕES</span><h2>Trade-offs assumidos</h2><ul><li>Demo estática para eliminar exposição e estado compartilhado.</li><li>Console e portfólio separados, compartilhando apenas conceitos.</li><li>Jobs em processo são suficientes no console pessoal, mas não são uma fila distribuída.</li><li>Forecast é heurístico e comunica sua confiança.</li></ul></article>
         <article className="card"><span className="eyebrow">QUALIDADE</span><h2>Como é verificado</h2><ul><li>Testes unitários e integrados do backend.</li><li>TypeScript strict e build Vite.</li><li>Teste de integridade de todos os dados demonstrativos.</li><li>Alembic como trilha executável de schema.</li></ul></article>
       </section>
-      <section className="stack"><span>React</span><span>TypeScript</span><span>FastAPI</span><span>SQLAlchemy</span><span>PostgreSQL</span><span>Pandas</span><span>scikit-learn</span><span>Docker</span><span>Netlify</span></section>
+      <section className="stack"><span>React</span><span>TypeScript</span><span>FastAPI</span><span>SQLAlchemy</span><span>PostgreSQL</span><span>Pandas</span><span>scikit-learn</span><span>Docker</span><span>GitHub Pages</span></section>
     </>
   );
 }
@@ -414,13 +424,13 @@ export default function App() {
   const enter = () => {
     sessionStorage.setItem('marketplace-seller-platform-portfolio-access', 'granted');
     setAccessGranted(true);
-    window.history.pushState({}, '', '/visao-executiva');
+    window.history.pushState({}, '', publicPath('/visao-executiva'));
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
   const exit = () => {
     sessionStorage.removeItem('marketplace-seller-platform-portfolio-access');
     setAccessGranted(false);
-    window.history.pushState({}, '', '/');
+    window.history.pushState({}, '', publicPath('/'));
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
   const publicInformation = path === '/arquitetura' || path === '/privacidade';

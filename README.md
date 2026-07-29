@@ -13,7 +13,7 @@ deliberadamente separadas:
 
 [![CI](https://github.com/vinmedrado/marketplace-seller-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/vinmedrado/marketplace-seller-platform/actions/workflows/ci.yml)
 
-**[Abrir demonstração pública](https://marketplace-seller-platform.netlify.app/)**
+**[Abrir demonstração pública](https://vinmedrado.github.io/marketplace-seller-platform/)**
 
 ## O que a demonstração apresenta
 
@@ -26,7 +26,7 @@ As ações da demo são armazenadas apenas em `sessionStorage`. O botão
 o cenário visto por outra pessoa.
 
 ```text
-portfolio/ ── JSON sintético versionado ── Netlify
+portfolio/ ── JSON sintético versionado ── GitHub Pages
 
 frontend/ ── FastAPI ── service layer ── PostgreSQL
                               ├── Mercado Livre OAuth
@@ -47,9 +47,10 @@ npm run build
 npm run dev
 ```
 
-O arquivo `netlify.toml` já define base, build, publicação, rewrite SPA,
-headers de segurança e cache de assets. Ao conectar este repositório no
-Netlify, a aplicação publicada será exclusivamente `portfolio/`.
+O workflow `.github/workflows/pages.yml` testa, compila e publica
+automaticamente a pasta `portfolio/` no GitHub Pages a cada atualização da
+branch `main`. O `netlify.toml` foi preservado apenas como alternativa de
+implantação.
 
 ## Executar o console pessoal
 
@@ -147,7 +148,7 @@ substituem decisões do controlador, contratos e avaliação jurídica.
 | `data_engineering/` | Raw, staging, marts e feature store |
 | `integrations/` | OAuth e API Mercado Livre |
 | `frontend/` | Console pessoal |
-| `portfolio/` | Experiência pública Netlify |
+| `portfolio/` | Experiência pública no GitHub Pages |
 | `tests/` | Testes unitários e integrados do backend |
 
 Mais detalhes em [Arquitetura](docs/ARCHITECTURE.md),
