@@ -8,6 +8,19 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![MIT License](https://img.shields.io/badge/License-MIT-111827?style=for-the-badge)
 
+
+## English overview
+
+**Marketplace Seller Platform** is a data-driven marketplace operations project built with **Python, FastAPI, PostgreSQL, React and TypeScript**. Its architecture separates a public, synthetic-data portfolio demonstration from the authenticated operations console. The backend covers product management, pricing, marketplace integrations and analytical workflows, while `data_engineering/` contains data pipelines and Airflow DAGs.
+
+**Engineering evidence:** GitHub Actions runs Python tests, migration and privacy checks, dependency audits, and TypeScript/frontend builds. Product updates restrict editable fields to protect record identity and tenant ownership.
+
+- [Public demonstration](https://vinmedrado.github.io/marketplace-seller-platform/)
+- [Architecture](docs/ARCHITECTURE.md) · [Security](docs/SECURITY.md) · [Privacy](PRIVACY.md)
+- [CI results](https://github.com/vinmedrado/marketplace-seller-platform/actions/workflows/ci.yml)
+
+> The public demo uses synthetic data. Passing CI verifies the configured automated checks; it is not a substitute for a full penetration test or production certification.
+
 ## Visao geral
 
 Plataforma full-stack de inteligencia para sellers em marketplaces. O projeto combina React, FastAPI, PostgreSQL, pipelines de dados, pricing assistido, ML explicavel e privacidade by design.
@@ -103,6 +116,20 @@ tests/           testes
 docs/            documentacao
 assets/demo/     screenshots e GIFs
 ```
+
+
+## Qualidade, segurança e validação
+
+Os fluxos de demonstração pública e console autenticado são independentes: a demo não requer tokens nem dados reais de vendedores. No backend, as rotas privadas exigem autenticação e operações de produtos são filtradas pelo identificador do cliente. Campos internos de produto (`id`, `cliente_id`, `ativo` e metadados) não podem ser sobrescritos pelo payload de atualização.
+
+**Verificações automatizadas do CI** ([workflow](.github/workflows/ci.yml)):
+
+- **Backend:** instalação, migrações Alembic, compilação, `pytest -q`, verificação de limpeza de privacidade e `pip_audit -r requirements.txt --no-deps`.
+- **Demonstração pública:** `npm ci`, TypeScript, testes de privacidade/dados demonstrativos, build Vite e `npm audit`.
+- **Console:** TypeScript, lint, testes, build e auditoria npm com limiar crítico.
+
+Para executar o conjunto localmente, use o ambiente configurado conforme `.env.example` e os comandos do workflow. **Limitação:** a auditoria Python configurada com `--no-deps` não cobre toda a árvore transitiva; a auditoria do console usa limiar crítico. A aprovação do CI não representa uma avaliação de segurança exaustiva.
+
 
 ## Roadmap
 
