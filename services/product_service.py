@@ -7,6 +7,15 @@ from ai.title_optimizer import optimize_title
 
 log = logging.getLogger("msp.service.product")
 
+# Apenas campos comerciais editáveis. IDs, tenant, status e metadados são
+# controlados pelo servidor; nunca podem ser sobrescritos pelo payload da API.
+EDITABLE_PRODUCT_FIELDS = frozenset({
+    "sku", "titulo", "descricao", "categoria_id", "categoria_nome",
+    "custo", "preco_base", "margem_minima", "peso_kg", "altura_cm",
+    "largura_cm", "comprimento_cm", "estoque", "ncm", "gtin",
+    "marca", "atributos", "tags",
+})
+
 
 def create_product(db: Session, cliente_id: str, data: ProductCreate) -> Product:
     # Otimiza título automaticamente
@@ -57,8 +66,9 @@ def update_product(db: Session, product_id: str, cliente_id: str, data: dict) ->
     p = db.query(Product).filter_by(id=product_id, cliente_id=cliente_id).first()
     if not p:
         return None
+    # Evita mass assignment de cliente_id, id, ativo, titulo_otimizado etc.
     for k, v in data.items():
-        if hasattr(p, k):
+        if k in EDITABLE_PRODUCT_FIELDS:
             setattr(p, k, v)
     if "titulo" in data:
         opt = optimize_title(data["titulo"])
