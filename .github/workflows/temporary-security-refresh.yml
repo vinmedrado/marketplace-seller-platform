@@ -1,0 +1,36 @@
+name: Temporary security lockfile refresh
+on:
+  push:
+    branches: [fix/security-cryptography-20261111]
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/security-cryptography-20261111
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Regenerate portfolio lockfile with patched Vite
+        working-directory: portfolio
+        run: |
+          npm install --save-dev --save-exact vite@8.3.8 --package-lock-only --ignore-scripts
+          npm audit fix --package-lock-only --ignore-scripts
+          npm ci --no-audit --no-fund
+          npm run check
+          npm test
+          npm run build
+          npm audit
+      - name: Commit audited lockfile changes to this branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add portfolio/package.json portfolio/package-lock.json
+          if ! git diff --cached --quiet; then
+            git commit -m "fix(security): refresh portfolio lockfile and Vite"
+            git push origin HEAD:fix/security-cryptography-20261111
+          fi
