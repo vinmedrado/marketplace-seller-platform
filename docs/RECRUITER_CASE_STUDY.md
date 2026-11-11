@@ -8,15 +8,15 @@ Marketplace sellers often operate across disconnected catalog exports, pricing s
 
 ## System design
 
-\`\`\`text
+```text
 Static React portfolio (synthetic data; no credentials)
 Authenticated React console → FastAPI → domain services → SQLAlchemy / PostgreSQL
                                      ↘ data pipelines / pricing / ML
-\`\`\`
+```
 
 The **public portfolio** is deliberately isolated from the **authenticated operations console**. A seller's product operations are scoped by tenant, and updates accept only permitted commercial fields. Pricing combines costs, fees and margin constraints with competitive inputs, with rule-based fallback when an ML artifact is unavailable.
 
-The repository separates \`frontend/\`, \`portfolio/\`, \`ui/\`, \`services/\`, \`pricing/\`, \`ml/\` and \`data_engineering/\`. Database schema changes use Alembic.
+The repository separates `frontend/`, `portfolio/`, `ui/`, `services/`, `pricing/`, `ml/` and `data_engineering/`. Database schema changes use Alembic.
 
 ## What this demonstrates
 
