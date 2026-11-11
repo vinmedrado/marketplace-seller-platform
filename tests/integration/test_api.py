@@ -189,3 +189,29 @@ def test_analytical_get_routes_are_idempotent(client, auth_headers, db):
         db.query(PortfolioAnalysisSnapshot).count(),
     )
     assert after == before
+
+
+def test_product_api_cannot_reassign_tenant_or_product_id(client, auth_headers):
+    """Regressão na rota autenticada: campos internos nunca mudam via PUT."""
+    created = client.post('/products', headers=auth_headers, json={
+        'sku': 'SEC-TENANT-001', 'title': 'Produto Seguro', 'cost_price': 50,
+        'base_price': 100,
+    })
+    assert created.status_code == 200
+    product = created.json()
+    response = client.put(f"/products/{product['id']}", headers=auth_headers, json={
+        'cliente_id': 'tenant-estranho',
+        'id': 'produto-estranho',
+        'ativo': False,
+        'titulo_otimizado': 'injetado',
+        'base_price': 115,
+    })
+    assert response.status_code == 200
+    result = response.json()
+    assert result['id'] == product['id']
+    assert result['cliente_id'] == product['cliente_id']
+    assert result['ativo'] is True
+    assert result['titulo_otimizado'] != 'injetado'
+    assert float(result['preco_base']) == 115
+    lookup = client.get(f"/products/{product['id']}", headers=auth_headers)
+    assert lookup.status_code == 200
