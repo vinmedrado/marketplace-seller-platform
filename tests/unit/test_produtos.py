@@ -69,3 +69,23 @@ def test_add_image(db, produto):
     img = add_image(db, produto.id, "https://img.teste.com/foto.jpg", principal=True)
     assert img.id
     assert img.principal == True
+
+
+def test_update_product_does_not_allow_mass_assignment(db, cliente, produto):
+    """Um usuário não pode trocar proprietário, identidade ou campos internos."""
+    original_id, original_tenant = produto.id, produto.cliente_id
+    updated = update_product(db, produto.id, cliente.id, {
+        "cliente_id": "outro-tenant",
+        "id": "outro-produto",
+        "ativo": False,
+        "titulo_otimizado": "valor injetado",
+        "custo": 99.99,
+    })
+    db.refresh(updated)
+    assert updated.id == original_id
+    assert updated.cliente_id == original_tenant
+    assert updated.ativo is True
+    assert updated.titulo_otimizado != "valor injetado"
+    assert float(updated.custo) == 99.99
+    assert get_product(db, original_id, original_tenant) is not None
+    assert get_product(db, original_id, "outro-tenant") is None
